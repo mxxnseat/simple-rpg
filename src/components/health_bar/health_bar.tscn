@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://hmt7twf72ah2"]
+
+[ext_resource type="Script" uid="uid://6drjudjqu5sp" path="res://src/components/health_bar/health_bar.gd" id="1_1bvlm"]
+[ext_resource type="Script" uid="uid://cvwuqby6s0dlh" path="res://src/components/health_bar/view.gd" id="2_kaw6j"]
+[ext_resource type="Script" uid="uid://cpyeory2u2ewx" path="res://src/components/health_bar/state.gd" id="3_72ex8"]
+[ext_resource type="Script" uid="uid://byts78yq5fgea" path="res://src/components/health_bar/model.gd" id="4_qhu7x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1bvlm"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y3kqx"]
+bg_color = Color(0, 0.72457397, 0.22834933, 1)
+border_color = Color(0.97917587, 0.7160777, 0.7885486, 1)
+
+[node name="health_bar" type="Control" unique_id=2058588960]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_1bvlm")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=639148960]
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 2.0
+theme_override_styles/background = SubResource("StyleBoxFlat_1bvlm")
+theme_override_styles/fill = SubResource("StyleBoxFlat_y3kqx")
+max_value = 0.0
+show_percentage = false
+script = ExtResource("2_kaw6j")
+
+[node name="State" type="Node2D" parent="." unique_id=242582112]
+script = ExtResource("3_72ex8")
+
+[node name="Model" type="Node2D" parent="." unique_id=2001373237]
+script = ExtResource("4_qhu7x")

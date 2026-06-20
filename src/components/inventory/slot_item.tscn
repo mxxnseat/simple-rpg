@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://yse1t2wcq3sa"]
+
+[ext_resource type="Script" uid="uid://wo21girlmphs" path="res://src/components/inventory/slot_item.gd" id="1_wqyth"]
+
+[node name="TextureRect" type="TextureRect" unique_id=1790886174]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wqyth")

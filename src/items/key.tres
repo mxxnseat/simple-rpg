@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://cu8vdmryigw6f"]
+
+[ext_resource type="Texture2D" uid="uid://qjmtqvrik3rm" path="res://art/items/key.png" id="1_646gu"]
+[ext_resource type="Script" uid="uid://bgp7gcdkqgbxl" path="res://src/resources/item.gd" id="1_uqc2c"]
+
+[resource]
+script = ExtResource("1_uqc2c")
+id = 1
+icon = ExtResource("1_646gu")
+max_stack = 1
+description = "Key to activate chest in the beginner zone"
+metadata/_custom_type_script = "uid://bgp7gcdkqgbxl"

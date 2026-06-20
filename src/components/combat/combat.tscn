@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://df5t0mb3jhem2"]
+
+[ext_resource type="Script" uid="uid://oq7xe5yc2wjj" path="res://src/components/combat/model.gd" id="1_a0al6"]
+[ext_resource type="Script" uid="uid://jf3aj6ap0s4g" path="res://src/components/combat/combat.gd" id="1_tsgq2"]
+[ext_resource type="Script" uid="uid://duiyyo8dftxsc" path="res://src/components/combat/state.gd" id="1_vyohi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tsgq2"]
+radius = 16.03122
+
+[node name="combat" type="Node2D" unique_id=1201524011]
+script = ExtResource("1_tsgq2")
+
+[node name="attack_cooldown" type="Timer" parent="." unique_id=883660267]
+wait_time = 0.5
+
+[node name="attack_range" type="Area2D" parent="." unique_id=1326603136]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="attack_range" unique_id=1575318702]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_tsgq2")
+
+[node name="Model" type="Node2D" parent="." unique_id=1765543234]
+script = ExtResource("1_a0al6")
+
+[node name="State" type="Node2D" parent="." unique_id=407011118]
+script = ExtResource("1_vyohi")
+
+[connection signal="timeout" from="attack_cooldown" to="Model" method="_on_attack_cooldown_timeout"]
+[connection signal="body_entered" from="attack_range" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="attack_range" to="." method="_on_attack_range_body_exited"]

@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://h3lrdkrkm2xe"]
+
+[ext_resource type="Script" uid="uid://6touedb2geva" path="res://src/components/inventory/inventory.gd" id="1_rgc40"]
+[ext_resource type="Script" uid="uid://dft4csdkhhflg" path="res://src/components/inventory/inventory_ui.gd" id="2_e3m4u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qw0r6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qw0r6"]
+font_size = 10
+
+[node name="Inventory" type="CanvasLayer" unique_id=361855720]
+script = ExtResource("1_rgc40")
+
+[node name="Panel" type="Panel" parent="." unique_id=317026899]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -248.0
+offset_right = 256.0
+offset_bottom = 248.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qw0r6")
+script = ExtResource("2_e3m4u")
+
+[node name="ItemGrid" type="GridContainer" parent="Panel" unique_id=97391795]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 8
+
+[node name="TextEdit" type="Label" parent="Panel" unique_id=1199243856]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_top = -26.0
+offset_right = 17.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "INVENTORY"
+label_settings = SubResource("LabelSettings_qw0r6")
+horizontal_alignment = 1
+vertical_alignment = 1

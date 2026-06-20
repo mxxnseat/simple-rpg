@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bgagjdvxapwbk"]
+
+[ext_resource type="Script" uid="uid://cew0ct6qra57r" path="res://src/components/chest/chest_ui.gd" id="1_oia4a"]
+[ext_resource type="Texture2D" uid="uid://865n1vwx42wn" path="res://art/sprites/objects/chest_01.png" id="2_voi3b"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3wp6"]
+atlas = ExtResource("2_voi3b")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q451d"]
+atlas = ExtResource("2_voi3b")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j8qly"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f3wp6")
+}],
+"loop": false,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q451d")
+}],
+"loop": false,
+"name": &"full",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jtijg"]
+radius = 21.023796
+
+[node name="chest" type="Area2D" unique_id=1450801473 groups=["interactable"]]
+script = ExtResource("1_oia4a")
+
+[node name="view" type="AnimatedSprite2D" parent="." unique_id=1081653603]
+position = Vector2(0, -6)
+sprite_frames = SubResource("SpriteFrames_j8qly")
+animation = &"empty"
+
+[node name="hitbox" type="CollisionShape2D" parent="." unique_id=143364294]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_jtijg")
