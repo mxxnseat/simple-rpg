@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://yse1t2wcq3sa"]
+
+[node name="SlotItem" type="TextureRect" unique_id=1790886174]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Controller" type="Node2D" parent="." unique_id=128904964]

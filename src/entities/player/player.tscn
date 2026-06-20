@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://boex1wmaiqq7b" path="res://src/entities/player/state.gd" id="6_oih67"]
 [ext_resource type="Script" uid="uid://b6dm227iip6kd" path="res://src/entities/player/model.gd" id="8_4f0qm"]
 [ext_resource type="PackedScene" uid="uid://df5t0mb3jhem2" path="res://src/components/combat/combat.tscn" id="9_4f0qm"]
+[ext_resource type="PackedScene" uid="uid://cstp3lckf8acf" path="res://src/entities/player/pickup_items/pickup_items.tscn" id="10_tk761"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
 atlas = ExtResource("2_ketdh")
@@ -426,8 +427,6 @@ radius = 4.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
 radius = 18.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
-
 [node name="player" type="CharacterBody2D" unique_id=1813256861 groups=["player"]]
 collision_layer = 3
 collision_mask = 3
@@ -460,12 +459,6 @@ zoom = Vector2(4, 4)
 
 [node name="health_bar" parent="." unique_id=2058588960 instance=ExtResource("3_0mfjg")]
 
-[node name="items_pickup_area" type="Area2D" parent="." unique_id=1877178983]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="items_pickup_area" unique_id=1831746136]
-position = Vector2(1, -4)
-shape = SubResource("CircleShape2D_dqkch")
-
 [node name="Inventory" parent="." unique_id=1081789759 instance=ExtResource("4_oih67")]
 
 [node name="Controller" type="Node" parent="." unique_id=1573478985]
@@ -481,7 +474,7 @@ script = ExtResource("8_4f0qm")
 position = Vector2(1, -4)
 target_group = "enemy"
 
+[node name="PickupItems" parent="." unique_id=1774418659 instance=ExtResource("10_tk761")]
+
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]
-[connection signal="area_entered" from="items_pickup_area" to="." method="_on_items_pickup_area_area_entered"]
-[connection signal="area_exited" from="items_pickup_area" to="." method="_on_items_pickup_area_area_exited"]

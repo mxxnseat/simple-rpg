@@ -12,9 +12,6 @@ func setup(e_model: EnemyModel, c_model: CombatModel) -> void:
 	model = e_model
 	combat_model = c_model
 
-func is_player(body: Node2D):
-	return body.is_in_group("player")
-
 func _physics_process(delta: float) -> void:
 	if combat_model.get_targets_number():
 		model.attack()
@@ -33,9 +30,9 @@ func handle_attack():
 	combat_model.attack()
 
 func _on_detection_area_body_entered(body: Node2D) -> void:
-	if is_player(body):
+	if Global.is_player(body):
 		model.chase(body)
 
 func _on_detection_area_body_exited(body: Node2D) -> void:
-	if is_player(body):
+	if Global.is_player(body):
 		model.release_chase()

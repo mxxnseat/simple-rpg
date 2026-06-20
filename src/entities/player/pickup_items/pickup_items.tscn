@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cstp3lckf8acf"]
+
+[ext_resource type="Script" uid="uid://cws0cdq6mu8l3" path="res://src/entities/player/pickup_items/pickup_items.gd" id="1_eqawn"]
+[ext_resource type="Script" uid="uid://b8hn813v4ongs" path="res://src/entities/player/pickup_items/model.gd" id="2_5i7hy"]
+[ext_resource type="Script" uid="uid://d1dy3nl0qa6gy" path="res://src/entities/player/pickup_items/state.gd" id="3_jxkgf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b6jj8"]
+radius = 20.0
+
+[node name="PickupItems" type="Area2D" unique_id=1774418659]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_eqawn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1427464320]
+shape = SubResource("CircleShape2D_b6jj8")
+
+[node name="Model" type="Node2D" parent="." unique_id=1214929764]
+script = ExtResource("2_5i7hy")
+
+[node name="State" type="Node2D" parent="." unique_id=441947936]
+script = ExtResource("3_jxkgf")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

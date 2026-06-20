@@ -17,6 +17,11 @@ func _ready():
 	create_borders()
 	spawn_enemies_in_zone()
 	
+	var pickup: Pickup = pickup_scene.instantiate()
+	pickup.item = key_item
+	pickup.position = Vector2(10, 10)
+	add_child(pickup)
+	
 
 func create_borders():
 	var used = $TileMap.get_used_rect()

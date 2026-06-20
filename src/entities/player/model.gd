@@ -31,6 +31,5 @@ func attack() -> void:
 		return
 	state.set_state(state.STATES.ATTACKING)
 	
-
 func velocity() -> Vector2:
 	return state.velocity
