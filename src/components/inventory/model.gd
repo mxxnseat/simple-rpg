@@ -1,35 +1,44 @@
 extends Node2D
 class_name InventoryModel
 
-signal inventory_updated(slots: Dictionary)
+signal inventory_updated(state: InventoryState)
 
-var slots: Dictionary[int, InventorySlotData] = {}
-var CAPACITY = 32
+var state: InventoryState
 
-func setup(capacity: int) -> void:
-	CAPACITY = capacity
+func setup(i_state: InventoryState) -> void:
+	state = i_state
+	
+	state.inventory_updated.connect(
+		func(state: InventoryState): 
+			inventory_updated.emit(state)
+	)
 	
 func get_items_count() -> int:
-	return slots.size()
+	return state.slots.size()
+	
+func toggle_opened() -> void:
+	state.set_is_opened(!state.is_opened)
 
 func add_item(item: Item, amount: int = 1) -> void:
-	if not slots.has(item.id):
-		if slots.size() >= CAPACITY:
+	if not state.slots.has(item.id):
+		if get_items_count() >= state.capacity:
 			return
 		var data = InventorySlotData.new()
 		data.item = item
-		data.position = slots.size()
-		slots[item.id] = data
-	slots[item.id].count += amount
-	inventory_updated.emit(slots)
+		data.position = get_items_count()
+		state.slots[item.id] = data
+	state.slots[item.id].count += amount
+	# actually not very good to publish the same signal
+	# from different sources, rethink it in future please
+	inventory_updated.emit(state)
 
 func remove_item(position: int, amount: int = 1) -> void:
-	for id in slots:
-		var slot_item = slots[id]
+	for id in state.slots:
+		var slot_item = state.slots[id]
 		if slot_item.position == position:
 			slot_item.count -= amount
 			if slot_item.count <= 0:
-				slots.erase(id)
-			inventory_updated.emit(slots)
+				state.slots.erase(id)
+				inventory_updated.emit(state)
 			return
 			

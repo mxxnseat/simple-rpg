@@ -8,15 +8,17 @@ var state: PlayerPickupItemsState
 func setup(ppi_state: PlayerPickupItemsState):
 	state = ppi_state
 
-func add_item_in_range(item: Pickup) -> void:
-	state.items_in_range[item] = true
+func add_item_in_range(pickup: Pickup) -> void:
+	state.items_in_range[pickup] = true
 	
-func remove_item_from_range(item: Pickup) -> void:
-	state.items_in_range.erase(item)
+func remove_item_from_range(pickup: Pickup) -> void:
+	state.items_in_range.erase(pickup)
 	
 func pickup() -> void:
 	if state.items_in_range.size() == 0:
 		return
 	var items = state.items_in_range.keys()
 	var intent_to_pickup: Pickup = items.pop_front()
-	emit_signal("picked_up", intent_to_pickup.pickup())
+	
+	picked_up.emit(intent_to_pickup.pickup())
+	remove_item_from_range(intent_to_pickup)

@@ -4,6 +4,9 @@ var enemy_scene = preload("res://src/entities/enemy/enemy.tscn")
 var pickup_scene = preload("res://src/components/pickup/pickup.tscn")
 var key_item = preload("res://src/items/key.tres")
 
+@onready var player_inventory_view: InventoryView = $UI/CenterContainer/HBoxContainer/PlayerInventoryView
+@onready var player: Player = $player
+
 func _ready():
 	var used = $TileMap.get_used_rect()
 	var cell_size = $TileMap.tile_set.tile_size
@@ -22,6 +25,7 @@ func _ready():
 	pickup.position = Vector2(10, 10)
 	add_child(pickup)
 	
+	player_inventory_view.setup(player.inventory.model)
 
 func create_borders():
 	var used = $TileMap.get_used_rect()

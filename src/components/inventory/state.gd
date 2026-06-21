@@ -1,0 +1,19 @@
+extends Node2D
+class_name InventoryState
+
+signal inventory_updated(state: InventoryState)
+
+var is_opened = false
+var slots: Dictionary[int, InventorySlotData] = {}
+var capacity: int = 0
+
+func setup(capacity: int):
+	set_capacity(capacity)
+	
+func set_is_opened(value: bool):
+	is_opened = value
+	emit_signal("inventory_updated", self)
+	
+func set_capacity(value: int):
+	capacity = value
+	emit_signal("inventory_updated", self)

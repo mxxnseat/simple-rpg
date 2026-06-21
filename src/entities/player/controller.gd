@@ -1,15 +1,17 @@
 extends Node
 class_name PlayerController
 
+var inventory_model: InventoryModel
 var player_pickup_items_model: PlayerPickupItemsModel
 var combat_model: CombatModel
 var model: PlayerModel
 var body: Player
 
-func setup(p_model: PlayerModel, c_model: CombatModel, ppi_model: PlayerPickupItemsModel):
+func setup(p_model: PlayerModel, c_model: CombatModel, ppi_model: PlayerPickupItemsModel, i_model: InventoryModel):
 	model = p_model
 	combat_model = c_model
 	player_pickup_items_model = ppi_model
+	inventory_model = i_model
 
 func _ready():
 	body = get_parent()
@@ -20,6 +22,8 @@ func _input(event: InputEvent) -> void:
 		combat_model.attack()
 	if event.is_action_pressed("pickup"):
 		player_pickup_items_model.pickup()
+	if event.is_action_pressed("inventory"):
+		inventory_model.toggle_opened()
 		
 func _physics_process(delta) -> void:
 	handle_movement()

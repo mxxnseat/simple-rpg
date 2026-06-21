@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://brfpkf05homm3"]
+
+[ext_resource type="Script" uid="uid://dsxhdgtrb4bxx" path="res://src/components/inventory/inventory_view/inventory_view.gd" id="1_357cc"]
+
+[node name="InventoryView" type="Panel" unique_id=160212785]
+custom_minimum_size = Vector2(300, 300)
+script = ExtResource("1_357cc")
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=1705612979]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 8
