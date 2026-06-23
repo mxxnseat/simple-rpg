@@ -475,10 +475,6 @@ target_group = "enemy"
 [node name="PickupItems" parent="." unique_id=1774418659 instance=ExtResource("10_tk761")]
 
 [node name="Inventory" parent="." unique_id=1081789759 instance=ExtResource("4_oih67")]
-offset_left = -150.0
-offset_top = -334.0
-offset_right = 150.0
-offset_bottom = -34.0
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]

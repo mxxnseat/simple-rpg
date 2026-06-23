@@ -12,7 +12,6 @@ signal inventory_updated(state: InventoryState)
 @onready var inventory: Inventory = $Inventory
 @onready var pickup_items: PlayerPickupItems = $PickupItems
 
-
 func _ready():
 	setup()
 	

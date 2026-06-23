@@ -6,6 +6,7 @@ var key_item = preload("res://src/items/key.tres")
 
 @onready var player_inventory_view: InventoryView = $UI/CenterContainer/HBoxContainer/PlayerInventoryView
 @onready var player: Player = $player
+@onready var enemy: Enemy = $enemy
 
 func _ready():
 	var used = $TileMap.get_used_rect()
@@ -20,12 +21,8 @@ func _ready():
 	create_borders()
 	spawn_enemies_in_zone()
 	
-	var pickup: Pickup = pickup_scene.instantiate()
-	pickup.item = key_item
-	pickup.position = Vector2(10, 10)
-	add_child(pickup)
-	
 	player_inventory_view.setup(player.inventory.model)
+	enemy.items_dropped.connect(_on_items_dropped)
 
 func create_borders():
 	var used = $TileMap.get_used_rect()
@@ -69,3 +66,10 @@ func spawn_enemy(position: Vector2):
 	var enemy = enemy_scene.instantiate()
 	enemy.position = position
 	add_child(enemy)
+
+func _on_items_dropped(items: Array[DropItemResource]):
+	for drop_item in items:
+		var pickup: Pickup = pickup_scene.instantiate()
+		pickup.item = drop_item.item
+		pickup.position = drop_item.position
+		add_child(pickup)

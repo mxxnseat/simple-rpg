@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ba1ax40dovxmn"]
+
+[ext_resource type="Script" uid="uid://cd4txtyg0wyon" path="res://src/components/drop_item/drop_item.gd" id="1_lplw7"]
+
+[node name="DropItem" type="Node2D" unique_id=296015275]
+script = ExtResource("1_lplw7")

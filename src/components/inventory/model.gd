@@ -13,11 +13,19 @@ func setup(i_state: InventoryState) -> void:
 			inventory_updated.emit(state)
 	)
 	
+func get_slots() -> Dictionary[int, InventorySlotData]:
+	return state.slots
+	
 func get_items_count() -> int:
 	return state.slots.size()
 	
 func toggle_opened() -> void:
 	state.set_is_opened(!state.is_opened)
+
+func clear():
+	for id in state.slots:
+		state.slots.erase(id)
+	inventory_updated.emit(state)
 
 func add_item(item: Item, amount: int = 1) -> void:
 	if not state.slots.has(item.id):
@@ -41,4 +49,3 @@ func remove_item(position: int, amount: int = 1) -> void:
 				state.slots.erase(id)
 				inventory_updated.emit(state)
 			return
-			

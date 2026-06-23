@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="LootTable" format=3 uid="uid://cbr4bqpuv3qg8"]
+
+[ext_resource type="Resource" uid="uid://cu8vdmryigw6f" path="res://src/items/key.tres" id="1_5mwp8"]
+[ext_resource type="Script" uid="uid://cbykktpm5k2ij" path="res://src/resources/loot_table/loot_entry.gd" id="2_s430g"]
+[ext_resource type="Script" uid="uid://bg0yd4e6m25am" path="res://src/resources/loot_table/loot_table.gd" id="3_s430g"]
+
+[sub_resource type="Resource" id="Resource_78hqn"]
+script = ExtResource("2_s430g")
+item = ExtResource("1_5mwp8")
+metadata/_custom_type_script = "uid://cbykktpm5k2ij"
+
+[resource]
+script = ExtResource("3_s430g")
+entries = Array[ExtResource("2_s430g")]([SubResource("Resource_78hqn")])

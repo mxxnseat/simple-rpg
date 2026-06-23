@@ -21,7 +21,6 @@ func refresh(state: InventoryState):
 	# i really fucked up with inventory i wanna move forward
 	# so i keep this not optimized, but actually maybe it's okay
 	var grid_childrens = grid.get_children()
-	print(grid_childrens)
 	for grid_child in grid_childrens:
 		grid_child.queue_free()
 		

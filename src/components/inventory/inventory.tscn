@@ -5,11 +5,8 @@
 [ext_resource type="Script" uid="uid://ciqyb0bjscp05" path="res://src/components/inventory/state.gd" id="3_e3m4u"]
 
 [node name="Inventory" type="Control" unique_id=463960440]
-custom_minimum_size = Vector2(300, 300)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 300.0
-offset_bottom = 300.0
 script = ExtResource("1_rgc40")
 
 [node name="Model" type="Node2D" parent="." unique_id=2040823642]
