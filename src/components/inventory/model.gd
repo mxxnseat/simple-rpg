@@ -21,10 +21,15 @@ func get_items_count() -> int:
 	
 func toggle_opened() -> void:
 	state.set_is_opened(!state.is_opened)
+	
+func open() -> void:
+	state.set_is_opened(true)
+	
+func close() -> void:
+	state.set_is_opened(false)
 
 func clear():
-	for id in state.slots:
-		state.slots.erase(id)
+	state.slots.clear()
 	inventory_updated.emit(state)
 
 func add_item(item: Item, amount: int = 1) -> void:
@@ -36,7 +41,7 @@ func add_item(item: Item, amount: int = 1) -> void:
 		data.position = get_items_count()
 		state.slots[item.id] = data
 	state.slots[item.id].count += amount
-	# actually not very good to publish the same signal
+	# TODO: actually not very good to publish the same signal
 	# from different sources, rethink it in future please
 	inventory_updated.emit(state)
 

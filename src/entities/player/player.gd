@@ -11,6 +11,7 @@ signal inventory_updated(state: InventoryState)
 @onready var combat: Combat = $combat
 @onready var inventory: Inventory = $Inventory
 @onready var pickup_items: PlayerPickupItems = $PickupItems
+@onready var interactable: PlayerInteractable = $Interactable
 
 func _ready():
 	setup()
@@ -19,7 +20,13 @@ func setup():
 	pickup_items.setup(20)
 	health_bar.setup(state)
 	model.setup(state)
-	controller.setup(model, combat.model, pickup_items.model, inventory.model)
+	controller.setup(
+		model,
+		combat.model,
+		pickup_items.model,
+		inventory.model,
+		interactable.model
+	)
 	anim_manager.setup(state)
 	combat.setup(100)
 	inventory.setup(32)
@@ -38,6 +45,12 @@ func take_damage(amount: int):
 	
 func _on_item_picked_up(item: Item) -> void:
 	inventory.add_item(item, 1)
+	
+func open_inventory():
+	inventory.open()
+	
+func close_inventory():
+	inventory.close()
 	
 func _on_inventory_updated(state: InventoryState) -> void:
 	inventory_updated.emit(state)

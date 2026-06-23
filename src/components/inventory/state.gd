@@ -11,6 +11,8 @@ func setup(capacity: int):
 	set_capacity(capacity)
 	
 func set_is_opened(value: bool):
+	if is_opened == value:
+		return
 	is_opened = value
 	emit_signal("inventory_updated", self)
 	

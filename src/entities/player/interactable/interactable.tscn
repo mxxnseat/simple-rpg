@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bu40hvw6nhqnm"]
+
+[ext_resource type="Script" uid="uid://b855ycs1t1rlj" path="res://src/entities/player/interactable/interactable.gd" id="1_le34v"]
+[ext_resource type="Script" uid="uid://8ya5ockx1jva" path="res://src/entities/player/interactable/state.gd" id="2_ib1tg"]
+[ext_resource type="Script" uid="uid://bilgaerhrqawb" path="res://src/entities/player/interactable/model.gd" id="3_frdw0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ib1tg"]
+radius = 15.0
+
+[node name="Interactable" type="Area2D" unique_id=1140835601]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_le34v")
+
+[node name="hitbox" type="CollisionShape2D" parent="." unique_id=775224956]
+shape = SubResource("CircleShape2D_ib1tg")
+
+[node name="state" type="Node2D" parent="." unique_id=1319854844]
+script = ExtResource("2_ib1tg")
+
+[node name="model" type="Node2D" parent="." unique_id=1005676804]
+script = ExtResource("3_frdw0")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

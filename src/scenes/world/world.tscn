@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://dnp8djfynp2e8" path="res://src/entities/enemy/enemy.tscn" id="5_71j4m"]
 [ext_resource type="Resource" uid="uid://cbr4bqpuv3qg8" path="res://src/items/slime_loot_table.tres" id="7_iwh12"]
 [ext_resource type="PackedScene" uid="uid://brfpkf05homm3" path="res://src/components/inventory/inventory_view/inventory_view.tscn" id="8_gd3mq"]
-[ext_resource type="PackedScene" uid="uid://bgagjdvxapwbk" path="res://src/components/chest/chest_component.tscn" id="9_7r4gi"]
+[ext_resource type="PackedScene" uid="uid://bgagjdvxapwbk" path="res://src/components/chest/chest.tscn" id="9_7r4gi"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qfnet"]
 texture = ExtResource("1_4wyf3")
@@ -121,8 +121,10 @@ metadata/enemies_count = 1
 position = Vector2(165, 70)
 loot_table = ExtResource("7_iwh12")
 
-[node name="StaticBody2D" parent="." unique_id=1163372056 instance=ExtResource("9_7r4gi")]
-position = Vector2(235.96928, 59.12274)
+[node name="chests" type="Node2D" parent="." unique_id=485693543]
+
+[node name="chest" parent="chests" unique_id=1450801473 instance=ExtResource("9_7r4gi")]
+position = Vector2(72.97192, 54.037952)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1484824847]
 
@@ -130,6 +132,8 @@ position = Vector2(235.96928, 59.12274)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -4.0
+offset_right = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 

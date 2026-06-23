@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://boex1wmaiqq7b" path="res://src/entities/player/state.gd" id="6_oih67"]
 [ext_resource type="Script" uid="uid://b6dm227iip6kd" path="res://src/entities/player/model.gd" id="8_4f0qm"]
 [ext_resource type="PackedScene" uid="uid://df5t0mb3jhem2" path="res://src/components/combat/combat.tscn" id="9_4f0qm"]
+[ext_resource type="PackedScene" uid="uid://bu40hvw6nhqnm" path="res://src/entities/player/interactable/interactable.tscn" id="10_n7e5a"]
 [ext_resource type="PackedScene" uid="uid://cstp3lckf8acf" path="res://src/entities/player/pickup_items/pickup_items.tscn" id="10_tk761"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
@@ -471,6 +472,8 @@ script = ExtResource("8_4f0qm")
 [node name="combat" parent="." unique_id=1201524011 instance=ExtResource("9_4f0qm")]
 position = Vector2(1, -4)
 target_group = "enemy"
+
+[node name="Interactable" parent="." unique_id=1140835601 instance=ExtResource("10_n7e5a")]
 
 [node name="PickupItems" parent="." unique_id=1774418659 instance=ExtResource("10_tk761")]
 

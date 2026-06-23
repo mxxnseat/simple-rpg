@@ -3,10 +3,14 @@ extends Node2D
 var enemy_scene = preload("res://src/entities/enemy/enemy.tscn")
 var pickup_scene = preload("res://src/components/pickup/pickup.tscn")
 var key_item = preload("res://src/items/key.tres")
+var inventory_view_scene = preload("res://src/components/inventory/inventory_view/inventory_view.tscn")
 
 @onready var player_inventory_view: InventoryView = $UI/CenterContainer/HBoxContainer/PlayerInventoryView
+@onready var not_player_inventory_view: InventoryView = null
 @onready var player: Player = $player
 @onready var enemy: Enemy = $enemy
+@onready var chests_wrapper: Node2D = $chests
+
 
 func _ready():
 	var used = $TileMap.get_used_rect()
@@ -23,7 +27,37 @@ func _ready():
 	
 	player_inventory_view.setup(player.inventory.model)
 	enemy.items_dropped.connect(_on_items_dropped)
+	
+	setup_chest_ui_listeners()
 
+func setup_chest_ui_listeners():
+	var chests = chests_wrapper.get_children() as Array[Chest]
+	for chest in chests:
+		chest.inventory_updated.connect(
+			func(state: InventoryState): 
+				_chest_on_inventory_updated(chest, state)
+		)
+		
+func _chest_on_inventory_updated(chest: Chest, state: InventoryState):
+	chest_state_is_closed(state)
+	chest_state_is_opened(chest, state)
+	
+func chest_state_is_closed(state: InventoryState):
+	if state.is_opened:
+		return
+	not_player_inventory_view.queue_free()
+	not_player_inventory_view = null
+	player.close_inventory()
+
+func chest_state_is_opened(chest: Chest, state: InventoryState):
+	if not state.is_opened:
+		return
+	var chestView: InventoryView = inventory_view_scene.instantiate()
+	$UI/CenterContainer/HBoxContainer.add_child(chestView)
+	chestView.setup(chest.inventory.model)
+	not_player_inventory_view = chestView
+	player.open_inventory()
+	
 func create_borders():
 	var used = $TileMap.get_used_rect()
 	var cell_size = $TileMap.tile_set.tile_size
