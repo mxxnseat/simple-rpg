@@ -2,14 +2,14 @@ extends Node2D
 
 var enemy_scene = preload("res://src/entities/enemy/enemy.tscn")
 var pickup_scene = preload("res://src/components/pickup/pickup.tscn")
-var key_item = preload("res://src/items/key.tres")
 var inventory_view_scene = preload("res://src/components/inventory/inventory_view/inventory_view.tscn")
 
 @onready var player_inventory_view: InventoryView = $UI/CenterContainer/HBoxContainer/PlayerInventoryView
-@onready var not_player_inventory_view: InventoryView = null
 @onready var player: Player = $player
 @onready var enemy: Enemy = $enemy
 @onready var chests_wrapper: Node2D = $chests
+
+var not_player_inventory_view: InventoryView = null
 
 
 func _ready():

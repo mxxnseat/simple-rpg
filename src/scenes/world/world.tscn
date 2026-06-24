@@ -122,6 +122,7 @@ position = Vector2(165, 70)
 loot_table = ExtResource("7_iwh12")
 
 [node name="chests" type="Node2D" parent="." unique_id=485693543]
+y_sort_enabled = true
 
 [node name="chest" parent="chests" unique_id=1450801473 instance=ExtResource("9_7r4gi")]
 position = Vector2(72.97192, 54.037952)

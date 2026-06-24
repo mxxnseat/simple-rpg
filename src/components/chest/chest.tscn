@@ -38,19 +38,21 @@ animations = [{
 size = Vector2(14, 5.5)
 
 [node name="chest" type="StaticBody2D" unique_id=1658509279 groups=["interactable"]]
+y_sort_enabled = true
 collision_layer = 7
 collision_mask = 7
 physics_material_override = SubResource("PhysicsMaterial_5qyka")
 script = ExtResource("1_1201k")
 
 [node name="view" type="AnimatedSprite2D" parent="." unique_id=1081653603]
-position = Vector2(0, -6)
+position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_j8qly")
-animation = &"opened"
+animation = &"closed"
 script = ExtResource("1_oia4a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=221446382]
-position = Vector2(0, -2.25)
+position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_5qyka")
 
 [node name="Inventory" parent="." unique_id=463960440 instance=ExtResource("4_5qyka")]
+metadata/_edit_use_anchors_ = true
