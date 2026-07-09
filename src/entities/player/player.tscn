@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://df5t0mb3jhem2" path="res://src/components/combat/combat.tscn" id="9_4f0qm"]
 [ext_resource type="PackedScene" uid="uid://bu40hvw6nhqnm" path="res://src/entities/player/interactable/interactable.tscn" id="10_n7e5a"]
 [ext_resource type="PackedScene" uid="uid://cstp3lckf8acf" path="res://src/entities/player/pickup_items/pickup_items.tscn" id="10_tk761"]
+[ext_resource type="PackedScene" uid="uid://ba1ax40dovxmn" path="res://src/components/drop_item/drop_item.tscn" id="12_kc3pt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
 atlas = ExtResource("2_ketdh")
@@ -478,6 +479,8 @@ target_group = "enemy"
 [node name="PickupItems" parent="." unique_id=1774418659 instance=ExtResource("10_tk761")]
 
 [node name="Inventory" parent="." unique_id=1081789759 instance=ExtResource("4_oih67")]
+
+[node name="DropItem" parent="." unique_id=296015275 instance=ExtResource("12_kc3pt")]
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]

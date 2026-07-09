@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 signal inventory_updated(state: InventoryState)
+signal items_dropped(items: Array[DropItemResource])
 
 @onready var state: PlayerState = $State
 @onready var model: PlayerModel = $Model
@@ -12,6 +13,7 @@ signal inventory_updated(state: InventoryState)
 @onready var inventory: Inventory = $Inventory
 @onready var pickup_items: PlayerPickupItems = $PickupItems
 @onready var interactable: PlayerInteractable = $Interactable
+@onready var drop_item_component: DropItem = $DropItem
 
 func _ready():
 	setup()
@@ -30,6 +32,8 @@ func setup():
 	anim_manager.setup(state)
 	combat.setup(100)
 	inventory.setup(32)
+	interactable.setup(inventory.model)
+	drop_item_component.setup(inventory.model)
 	
 	health_bar.model.died.connect(_on_health_bar_died)
 	pickup_items.model.picked_up.connect(_on_item_picked_up)
@@ -54,3 +58,7 @@ func close_inventory():
 	
 func _on_inventory_updated(state: InventoryState) -> void:
 	inventory_updated.emit(state)
+	
+func drop_item(item: InventorySlotData):
+	var item_to_drop: Array[DropItemResource] = drop_item_component.drop(global_position, item.position, item.count)
+	items_dropped.emit(item_to_drop)

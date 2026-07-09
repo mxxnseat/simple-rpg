@@ -16,6 +16,10 @@ func set_is_opened(value: bool):
 	is_opened = value
 	emit_signal("inventory_updated", self)
 	
+func set_slots(new_slots: Dictionary[int, InventorySlotData]) -> void:
+	slots = new_slots
+	emit_signal("inventory_updated", self)
+	
 func set_capacity(value: int):
 	capacity = value
 	emit_signal("inventory_updated", self)

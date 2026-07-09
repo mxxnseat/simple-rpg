@@ -1,3 +1,4 @@
+# signal interacted
 extends Interactable
 class_name Chest
 
@@ -12,8 +13,11 @@ func _ready():
 	interacted.connect(_on_interacted)
 	inventory.model.inventory_updated.connect(_on_inventory_updated)
 	
-func _on_interacted() -> void:
-	inventory.toggle_opened()
+func _on_interacted(result: bool) -> void:
+	if result:
+		inventory.toggle_opened()
+	else:
+		close_inventory()
 
 func _on_inventory_updated(state: InventoryState):
 	view.toggle_visibility(state.is_opened)

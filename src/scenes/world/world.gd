@@ -5,12 +5,12 @@ var pickup_scene = preload("res://src/components/pickup/pickup.tscn")
 var inventory_view_scene = preload("res://src/components/inventory/inventory_view/inventory_view.tscn")
 
 @onready var player_inventory_view: InventoryView = $UI/CenterContainer/HBoxContainer/PlayerInventoryView
+@onready var world_drop_zone: WorldDropZone = $UI/WorldDropZone
 @onready var player: Player = $player
 @onready var enemy: Enemy = $enemy
 @onready var chests_wrapper: Node2D = $chests
 
 var not_player_inventory_view: InventoryView = null
-
 
 func _ready():
 	var used = $TileMap.get_used_rect()
@@ -25,8 +25,11 @@ func _ready():
 	create_borders()
 	spawn_enemies_in_zone()
 	
+	world_drop_zone.setup(player)
 	player_inventory_view.setup(player.inventory.model)
+	player_inventory_view.set_label_text()
 	enemy.items_dropped.connect(_on_items_dropped)
+	player.items_dropped.connect(_on_items_dropped)
 	
 	setup_chest_ui_listeners()
 
@@ -43,18 +46,22 @@ func _chest_on_inventory_updated(chest: Chest, state: InventoryState):
 	chest_state_is_opened(chest, state)
 	
 func chest_state_is_closed(state: InventoryState):
-	if state.is_opened:
+	if state.is_opened or not not_player_inventory_view:
 		return
 	not_player_inventory_view.queue_free()
 	not_player_inventory_view = null
 	player.close_inventory()
 
 func chest_state_is_opened(chest: Chest, state: InventoryState):
-	if not state.is_opened:
+	if not state.is_opened or not_player_inventory_view:
 		return
 	var chestView: InventoryView = inventory_view_scene.instantiate()
-	$UI/CenterContainer/HBoxContainer.add_child(chestView)
+	var hbox = $UI/CenterContainer/HBoxContainer
+	hbox.add_child(chestView)
+	hbox.move_child(player_inventory_view, 1) # maybe will break in the future but now it works
+	
 	chestView.setup(chest.inventory.model)
+	chestView.set_label_text("npc inventory")
 	not_player_inventory_view = chestView
 	player.open_inventory()
 	

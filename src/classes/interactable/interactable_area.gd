@@ -1,7 +1,7 @@
 extends Area2D
 class_name InteractableArea
 
-signal interacted
+signal interacted(inventory: InventoryModel)
 
 func _ready() -> void:
 	add_to_group("interactable")
@@ -16,5 +16,5 @@ func _ready() -> void:
 	collision_shape.shape = collision_circle
 	add_child(collision_shape)
 	
-func interact():
-	interacted.emit()
+func interact(inventory: InventoryModel):
+	interacted.emit(inventory)

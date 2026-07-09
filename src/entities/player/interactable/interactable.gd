@@ -4,8 +4,8 @@ class_name PlayerInteractable
 @onready var state: PlayerInteractableState = $state
 @onready var model: PlayerInteractableModel = $model
 
-func _ready() -> void:
-	model.setup(state)
+func setup(player_inventory: InventoryModel) -> void:
+	model.setup(state, player_inventory)
 
 func _on_area_entered(area: Area2D) -> void:
 	if Global.is_interactable(area):

@@ -31,26 +31,36 @@ func close() -> void:
 func clear():
 	state.slots.clear()
 	inventory_updated.emit(state)
+	
+func has_item(id: int) -> bool:
+	return state.slots.has(id)
 
 func add_item(item: Item, amount: int = 1) -> void:
-	if not state.slots.has(item.id):
+	if amount <= 0:
+		return
+		
+	var slots = state.slots
+	if not has_item(item.id):
 		if get_items_count() >= state.capacity:
 			return
 		var data = InventorySlotData.new()
 		data.item = item
 		data.position = get_items_count()
-		state.slots[item.id] = data
-	state.slots[item.id].count += amount
-	# TODO: actually not very good to publish the same signal
-	# from different sources, rethink it in future please
-	inventory_updated.emit(state)
+		slots[item.id] = data
+	slots[item.id].count += amount
+	state.set_slots(slots)
 
 func remove_item(position: int, amount: int = 1) -> void:
-	for id in state.slots:
-		var slot_item = state.slots[id]
+	var slots = state.slots
+	for id in slots:
+		var slot_item = slots[id]
 		if slot_item.position == position:
-			slot_item.count -= amount
+			slot_item.count -= amount if amount != -1 else slot_item.count
 			if slot_item.count <= 0:
-				state.slots.erase(id)
-				inventory_updated.emit(state)
-			return
+				slots.erase(id)
+			break
+	state.set_slots(slots)
+
+func transfer_item_from(source_data: InventorySlotData, source: InventoryModel, target_position = -1):
+	source.remove_item(source_data.position, source_data.count)
+	add_item(source_data.item, source_data.count)
