@@ -7,15 +7,20 @@ class_name SlotItem
 var inventory: InventoryModel
 var slot_data: InventorySlotData
 
-func _get_drag_data(at_position: Vector2) -> Variant:
-	if slot_data == null:
-		return null
-
+func create_preview() -> TextureRect:
 	var preview := TextureRect.new()
 	preview.texture = slot_data.item.icon
 	preview.custom_minimum_size = Vector2(48, 48)
+	preview.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	preview.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	preview.modulate.a = 1.0
-	set_drag_preview(preview)
+	return preview
+
+func _get_drag_data(at_position: Vector2) -> Variant:
+	if slot_data == null:
+		return null
+	
+	set_drag_preview(create_preview())
 	
 	var transfer_slot_data = InventorySlotData.new()
 	transfer_slot_data.count = slot_data.count

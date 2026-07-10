@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b6g0h5akydbs8" path="res://src/components/inventory/slot_item/slot_item.gd" id="1_4ng10"]
 [ext_resource type="Script" uid="uid://chhacg5vpq7ve" path="res://src/components/inventory/slot_item/controller.gd" id="2_bruad"]
+[ext_resource type="PackedScene" uid="uid://di7au1lur3744" path="res://src/components/icon/icon.tscn" id="2_sj6vf"]
 
 [node name="SlotItem" type="Panel" unique_id=1266966778]
 custom_minimum_size = Vector2(64, 64)
@@ -14,10 +15,8 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_4ng10")
 
-[node name="View" type="TextureRect" parent="." unique_id=1808178933]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="View" parent="." unique_id=1384078440 instance=ExtResource("2_sj6vf")]
+layout_mode = 1
 
 [node name="Controller" type="Node2D" parent="." unique_id=128904964]
 script = ExtResource("2_bruad")

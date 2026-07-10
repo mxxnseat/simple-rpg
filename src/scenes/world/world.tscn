@@ -10,6 +10,8 @@
 [ext_resource type="Resource" uid="uid://cbr4bqpuv3qg8" path="res://src/items/slime_loot_table.tres" id="7_iwh12"]
 [ext_resource type="PackedScene" uid="uid://brfpkf05homm3" path="res://src/components/inventory/inventory_view/inventory_view.tscn" id="8_gd3mq"]
 [ext_resource type="PackedScene" uid="uid://bgagjdvxapwbk" path="res://src/components/chest/chest.tscn" id="9_7r4gi"]
+[ext_resource type="Script" uid="uid://b045ep80narix" path="res://src/resources/inventory_slot_data.gd" id="9_qfn71"]
+[ext_resource type="Resource" uid="uid://cn4q1f6i0r21i" path="res://src/items/beginner_sword.tres" id="10_qqcoc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qfnet"]
 texture = ExtResource("1_4wyf3")
@@ -85,6 +87,12 @@ sources/2 = SubResource("TileSetAtlasSource_4mrxx")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qfnet"]
 size = Vector2(49.501022, 29.00338)
 
+[sub_resource type="Resource" id="Resource_1sa8s"]
+script = ExtResource("9_qfn71")
+item = ExtResource("10_qqcoc")
+count = 1
+metadata/_custom_type_script = "uid://b045ep80narix"
+
 [node name="world" type="Node2D" unique_id=171228053]
 y_sort_enabled = true
 rotation = -0.0005200821
@@ -127,6 +135,7 @@ y_sort_enabled = true
 
 [node name="chest" parent="chests" unique_id=1450801473 instance=ExtResource("9_7r4gi")]
 position = Vector2(72.97192, 54.037952)
+initial_entries = Array[ExtResource("9_qfn71")]([SubResource("Resource_1sa8s")])
 open_with_item_id = 1
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1484824847]

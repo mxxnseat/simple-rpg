@@ -1,10 +1,9 @@
 [gd_scene format=3 uid="uid://dccdytau8eq0o"]
 
 [ext_resource type="Script" uid="uid://qeodysixagko" path="res://src/components/pickup/pickup.gd" id="1_pg2rt"]
+[ext_resource type="PackedScene" uid="uid://di7au1lur3744" path="res://src/components/icon/icon.tscn" id="2_hi56w"]
 [ext_resource type="Script" uid="uid://domf61dx5w5rj" path="res://src/components/pickup/model.gd" id="2_tj6ik"]
 [ext_resource type="Script" uid="uid://cjvbuvg66wg3e" path="res://src/components/pickup/state.gd" id="3_31siq"]
-
-[sub_resource type="ImageTexture" id="ImageTexture_pg2rt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pg2rt"]
 radius = 13.038404
@@ -14,8 +13,22 @@ collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_pg2rt")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=340886299]
-texture = SubResource("ImageTexture_pg2rt")
+[node name="ViewWrapper" type="Control" parent="." unique_id=1932735881]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Icon" parent="ViewWrapper" unique_id=1384078440 instance=ExtResource("2_hi56w")]
+layout_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1609664581 groups=["pickupable_item"]]
 shape = SubResource("CircleShape2D_pg2rt")

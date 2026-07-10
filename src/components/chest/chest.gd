@@ -7,17 +7,25 @@ signal inventory_updated(state: InventoryState)
 @onready var view: ChestView = $view
 @onready var inventory: Inventory = $Inventory
 
+@export var initial_entries: Array[InventorySlotData] = []
+
 func _ready():
 	super._ready()
 	inventory.setup(10)
 	interacted.connect(_on_interacted)
+	_initialize_inventory()
 	inventory.model.inventory_updated.connect(_on_inventory_updated)
+	
 	
 func _on_interacted(result: bool) -> void:
 	if result:
 		inventory.toggle_opened()
 	else:
 		close_inventory()
+		
+func _initialize_inventory():
+	for initial_entry in initial_entries:
+		inventory.model.add_item(initial_entry.item, initial_entry.count)
 
 func _on_inventory_updated(state: InventoryState):
 	view.toggle_visibility(state.is_opened)

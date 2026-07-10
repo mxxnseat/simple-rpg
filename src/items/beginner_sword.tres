@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://cn4q1f6i0r21i"]
+
+[ext_resource type="Texture2D" uid="uid://blv8l7gp7ay5n" path="res://art/items/sword.png" id="1_5lo7p"]
+[ext_resource type="Script" uid="uid://bgp7gcdkqgbxl" path="res://src/resources/item.gd" id="1_7ou7m"]
+
+[resource]
+script = ExtResource("1_7ou7m")
+id = 2
+icon = ExtResource("1_5lo7p")
+max_stack = 1
+metadata/_custom_type_script = "uid://bgp7gcdkqgbxl"

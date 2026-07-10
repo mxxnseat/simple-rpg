@@ -3,7 +3,7 @@ class_name Pickup
 
 @onready var model: PickupModel = $Model
 @onready var state: PickupState = $State
-@onready var view: Sprite2D = $Sprite2D
+@onready var view: TextureRect = $ViewWrapper/Icon
 @export var item: Item
 
 func _ready():
