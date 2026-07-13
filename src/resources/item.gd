@@ -6,3 +6,4 @@ class_name Item
 @export var icon: Texture2D
 @export var max_stack = 99
 @export var description = ""
+@export var equipment_data: EquipmentData = null

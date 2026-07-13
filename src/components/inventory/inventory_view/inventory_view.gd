@@ -8,31 +8,35 @@ var model: InventoryModel
 var slot_item_scene = preload("res://src/components/inventory/slot_item/slot_item.tscn")
 var slot_data = preload("res://src/resources/inventory_slot_data.gd")
 
+var slots: Array[SlotItem] = []
+
 func setup(inventory_model: InventoryModel):
 	model = inventory_model
 	model.inventory_updated.connect(_on_inventory_updated)
-	refresh(model.state)
+	_instantiate_slots()
+	refresh(model.state.get_current_state())
 	
 func set_label_text(value: String = ""):
 	if not value:
 		value = "Inventory"
 	text.text = value
 	
-func _on_inventory_updated(state: InventoryState):
+func _on_inventory_updated(state: IInventoryState, previous_state: IInventoryState):
 	refresh(state)
 	
-func refresh(state: InventoryState):
+func _instantiate_slots() -> void:
+	for i in model.state.capacity:
+		var slot: SlotItem = slot_item_scene.instantiate()
+		slots.append(slot)
+		grid.add_child(slot)
+		slot.setup(model)
+	
+func refresh(state: IInventoryState):
 	visible = state.is_opened
 	
-	var grid_childrens = grid.get_children()
-	for grid_child in grid_childrens:
-		grid_child.queue_free()
-		
-	for item_id in state.slots:
-		var slot_data: InventorySlotData = state.slots[item_id]
-		var slot: SlotItem = slot_item_scene.instantiate()
-		grid.add_child(slot)
-		slot.setup(slot_data, model)
+	for position in state.capacity:
+		var item = model.get_slot_at_position(position)
+		slots[position].update_view(item)
 
 func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	return true

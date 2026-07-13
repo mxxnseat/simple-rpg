@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://df5t0mb3jhem2" path="res://src/components/combat/combat.tscn" id="8_0wpy6"]
 [ext_resource type="PackedScene" uid="uid://ba1ax40dovxmn" path="res://src/components/drop_item/drop_item.tscn" id="9_j4a4q"]
 [ext_resource type="PackedScene" uid="uid://h3lrdkrkm2xe" path="res://src/components/inventory/inventory.tscn" id="10_nqckx"]
+[ext_resource type="PackedScene" uid="uid://cu6xvjbnn21ur" path="res://src/components/stats/stats.tscn" id="11_a0n1b"]
+[ext_resource type="PackedScene" uid="uid://bgscgqvl8wqvc" path="res://src/components/gear/gear.tscn" id="12_8pgt6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ya47j"]
 atlas = ExtResource("1_7p1mj")
@@ -501,6 +503,10 @@ target_group = "player"
 [node name="DropItem" parent="." unique_id=296015275 instance=ExtResource("9_j4a4q")]
 
 [node name="Inventory" parent="." unique_id=463960440 instance=ExtResource("10_nqckx")]
+
+[node name="Stats" parent="." unique_id=434526498 instance=ExtResource("11_a0n1b")]
+
+[node name="Gear" parent="." unique_id=426232351 instance=ExtResource("12_8pgt6")]
 
 [connection signal="body_entered" from="detection_area" to="Controller" method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detection_area" to="Controller" method="_on_detection_area_body_exited"]

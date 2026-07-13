@@ -18,6 +18,7 @@ func interact(inventory: InventoryModel):
 		interacted.emit(true)
 	
 func _can_be_interacted(inventory: InventoryModel) -> bool:
+	print(inventory.has_item(open_with_item_id))
 	if open_with_item_id == -1:
 		return true
 	return inventory.has_item(open_with_item_id)

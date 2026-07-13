@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://bu40hvw6nhqnm" path="res://src/entities/player/interactable/interactable.tscn" id="10_n7e5a"]
 [ext_resource type="PackedScene" uid="uid://cstp3lckf8acf" path="res://src/entities/player/pickup_items/pickup_items.tscn" id="10_tk761"]
 [ext_resource type="PackedScene" uid="uid://ba1ax40dovxmn" path="res://src/components/drop_item/drop_item.tscn" id="12_kc3pt"]
+[ext_resource type="PackedScene" uid="uid://cu6xvjbnn21ur" path="res://src/components/stats/stats.tscn" id="13_3c4mh"]
+[ext_resource type="PackedScene" uid="uid://bgscgqvl8wqvc" path="res://src/components/gear/gear.tscn" id="14_p2qdy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
 atlas = ExtResource("2_ketdh")
@@ -481,6 +483,10 @@ target_group = "enemy"
 [node name="Inventory" parent="." unique_id=1081789759 instance=ExtResource("4_oih67")]
 
 [node name="DropItem" parent="." unique_id=296015275 instance=ExtResource("12_kc3pt")]
+
+[node name="Stats" parent="." unique_id=434526498 instance=ExtResource("13_3c4mh")]
+
+[node name="Gear" parent="." unique_id=426232351 instance=ExtResource("14_p2qdy")]
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]

@@ -2,7 +2,7 @@
 extends Interactable
 class_name Chest
 
-signal inventory_updated(state: InventoryState)
+signal inventory_updated(state: IInventoryState, previous_state: IInventoryState)
 
 @onready var view: ChestView = $view
 @onready var inventory: Inventory = $Inventory
@@ -27,9 +27,9 @@ func _initialize_inventory():
 	for initial_entry in initial_entries:
 		inventory.model.add_item(initial_entry.item, initial_entry.count)
 
-func _on_inventory_updated(state: InventoryState):
+func _on_inventory_updated(state: IInventoryState, previous_state: IInventoryState):
 	view.toggle_visibility(state.is_opened)
-	inventory_updated.emit(state)
+	inventory_updated.emit(state, previous_state)
 
 func open_inventory():
 	inventory.open()

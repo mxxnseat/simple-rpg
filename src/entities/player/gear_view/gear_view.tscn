@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://rghq2f7ackty"]
+
+[ext_resource type="Script" uid="uid://c2y21m0m5xjnr" path="res://src/entities/player/gear_view/gear_view.gd" id="1_gda3f"]
+[ext_resource type="PackedScene" uid="uid://yse1t2wcq3sa" path="res://src/components/inventory/slot_item/slot_item.tscn" id="2_gda3f"]
+
+[node name="GearView" type="Panel" unique_id=595563029]
+custom_minimum_size = Vector2(300, 300)
+script = ExtResource("1_gda3f")
+
+[node name="WeaponSlot" parent="." unique_id=1266966778 instance=ExtResource("2_gda3f")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 218.0
+offset_top = 118.0
+offset_right = -18.0
+offset_bottom = -118.0
+grow_horizontal = 1
+grow_vertical = 1

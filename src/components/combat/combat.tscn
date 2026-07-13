@@ -9,6 +9,7 @@ radius = 16.03122
 
 [node name="combat" type="Node2D" unique_id=1201524011]
 script = ExtResource("1_tsgq2")
+target_group = null
 
 [node name="attack_cooldown" type="Timer" parent="." unique_id=883660267]
 wait_time = 0.5

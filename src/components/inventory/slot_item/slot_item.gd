@@ -32,7 +32,12 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 		"data": transfer_slot_data
 	}
 
-func setup(p_slot_data: InventorySlotData, p_inventory: InventoryModel):
-	slot_data = p_slot_data
+func setup(p_inventory: InventoryModel):
 	inventory = p_inventory
-	view.texture = slot_data.item.icon
+	
+func update_view(p_slot_data: InventorySlotData):
+	slot_data = p_slot_data
+	if not p_slot_data:
+		view.texture = null
+	else:
+		view.texture = slot_data.item.icon

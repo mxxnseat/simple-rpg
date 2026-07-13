@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bgscgqvl8wqvc"]
+
+[ext_resource type="Script" uid="uid://dk8wftb3sv5ee" path="res://src/components/gear/gear.gd" id="1_d5xvg"]
+[ext_resource type="PackedScene" uid="uid://h3lrdkrkm2xe" path="res://src/components/inventory/inventory.tscn" id="2_etr2f"]
+
+[node name="Gear" type="Node2D" unique_id=426232351]
+script = ExtResource("1_d5xvg")
+
+[node name="Inventory" parent="." unique_id=463960440 instance=ExtResource("2_etr2f")]

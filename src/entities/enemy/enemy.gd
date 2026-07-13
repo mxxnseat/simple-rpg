@@ -13,6 +13,8 @@ signal items_dropped(items: Array[DropItemResource])
 @onready var combat: Combat = $combat
 @onready var drop_item: DropItem = $DropItem
 @onready var inventory: Inventory = $Inventory
+@onready var gear: Gear = $Gear
+@onready var stats: Stats = $Stats
 
 func _ready():
 	health_bar.setup(state)
@@ -23,8 +25,8 @@ func _ready():
 	
 	drop_item.setup(inventory.model)
 	
-	combat.setup(10)
-	
+	combat.setup(stats)
+	gear.setup(stats, inventory)
 	health_bar.model.died.connect(_on_health_bar_died)
 	combat.model.attack_sig.connect(_on_combat_attack_sig)
 	fill_inventory()

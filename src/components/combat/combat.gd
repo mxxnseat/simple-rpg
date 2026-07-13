@@ -6,9 +6,8 @@ class_name Combat
 
 @export var target_group: String
 
-func setup(damage: int):
-	state.damage = damage
-	model.setup(state)
+func setup(stats: Stats):
+	model.setup(state, stats)
 
 func _on_attack_range_body_entered(body: Node2D) -> void:
 	if body.is_in_group(target_group):

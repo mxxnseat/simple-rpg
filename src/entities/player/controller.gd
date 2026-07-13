@@ -3,6 +3,7 @@ class_name PlayerController
 
 var player_interactable_model: PlayerInteractableModel
 var inventory_model: InventoryModel
+var gear_inventory_model: InventoryModel
 var player_pickup_items_model: PlayerPickupItemsModel
 var combat_model: CombatModel
 var model: PlayerModel
@@ -13,12 +14,14 @@ func setup(
 		c_model: CombatModel,
 		ppi_model: PlayerPickupItemsModel,
 		i_model: InventoryModel,
+		gi_model: InventoryModel,
 		pi_model: PlayerInteractableModel
 	):
 	model = p_model
 	combat_model = c_model
 	player_pickup_items_model = ppi_model
 	inventory_model = i_model
+	gear_inventory_model = gi_model
 	player_interactable_model = pi_model
 
 func _ready():
@@ -32,6 +35,7 @@ func _input(event: InputEvent) -> void:
 		player_pickup_items_model.pickup()
 	if event.is_action_pressed("inventory"):
 		inventory_model.toggle_opened()
+		gear_inventory_model.toggle_opened()
 	if event.is_action_pressed("interact"):
 		player_interactable_model.interact()
 		

@@ -2,10 +2,24 @@
 
 [ext_resource type="Texture2D" uid="uid://blv8l7gp7ay5n" path="res://art/items/sword.png" id="1_5lo7p"]
 [ext_resource type="Script" uid="uid://bgp7gcdkqgbxl" path="res://src/resources/item.gd" id="1_7ou7m"]
+[ext_resource type="Script" uid="uid://dbv8vw6sdt2ik" path="res://src/resources/equipment_data_modifier.gd" id="1_e5d0h"]
+[ext_resource type="Script" uid="uid://ocebgg8ptnho" path="res://src/resources/equipment_data.gd" id="1_n537m"]
+
+[sub_resource type="Resource" id="Resource_8piap"]
+script = ExtResource("1_e5d0h")
+stat = "damage"
+value = 150
+metadata/_custom_type_script = "uid://dbv8vw6sdt2ik"
+
+[sub_resource type="Resource" id="Resource_e5d0h"]
+script = ExtResource("1_n537m")
+modifiers = Array[ExtResource("1_e5d0h")]([SubResource("Resource_8piap")])
+metadata/_custom_type_script = "uid://ocebgg8ptnho"
 
 [resource]
 script = ExtResource("1_7ou7m")
 id = 2
 icon = ExtResource("1_5lo7p")
 max_stack = 1
+equipment_data = SubResource("Resource_e5d0h")
 metadata/_custom_type_script = "uid://bgp7gcdkqgbxl"
