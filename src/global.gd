@@ -2,6 +2,7 @@ extends Node
 
 var collision_layer: int = 1 << 2 # Cooked
 var interact_radius: int = 15
+var slot_size: int = 64
 
 func is_player(body: Node) -> bool:
 	return body.is_in_group("player")

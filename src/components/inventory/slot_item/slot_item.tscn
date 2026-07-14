@@ -1,8 +1,12 @@
 [gd_scene format=3 uid="uid://yse1t2wcq3sa"]
 
 [ext_resource type="Script" uid="uid://b6g0h5akydbs8" path="res://src/components/inventory/slot_item/slot_item.gd" id="1_4ng10"]
+[ext_resource type="Texture2D" uid="uid://swdra02tvt6l" path="res://art/inventory/inventiory_slot.png" id="1_x2bgy"]
 [ext_resource type="Script" uid="uid://chhacg5vpq7ve" path="res://src/components/inventory/slot_item/controller.gd" id="2_bruad"]
 [ext_resource type="PackedScene" uid="uid://di7au1lur3744" path="res://src/components/icon/icon.tscn" id="2_sj6vf"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mnh71"]
+texture = ExtResource("1_x2bgy")
 
 [node name="SlotItem" type="Panel" unique_id=1266966778]
 custom_minimum_size = Vector2(64, 64)
@@ -13,6 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxTexture_mnh71")
 script = ExtResource("1_4ng10")
 
 [node name="View" parent="." unique_id=1384078440 instance=ExtResource("2_sj6vf")]

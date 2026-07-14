@@ -1,4 +1,4 @@
-extends Panel
+extends PanelContainer
 class_name InventoryView
 
 @onready var grid: GridContainer = $GridContainer
@@ -15,10 +15,22 @@ func setup(inventory_model: InventoryModel):
 	model.inventory_updated.connect(_on_inventory_updated)
 	_instantiate_slots()
 	refresh(model.state.get_current_state())
+	_align_grid_container_elements()
+	
+func _align_grid_container_elements() -> void:
+	var style: StyleBox = get_theme_stylebox("panel")
+	var usable_width: float = size.x - style.content_margin_left - style.content_margin_right
+	var grid_columns: int = usable_width / Global.slot_size
+	
+	var total_slot_width: float = grid_columns * Global.slot_size
+	var separation: int = max((usable_width - total_slot_width) / (grid_columns - 1), 0)
+	
+	grid.columns = grid_columns
+	grid.add_theme_constant_override("h_separation", int(separation))
+	grid.add_theme_constant_override("v_separation", int(separation))
+
 	
 func set_label_text(value: String = ""):
-	if not value:
-		value = "Inventory"
 	text.text = value
 	
 func _on_inventory_updated(state: IInventoryState, previous_state: IInventoryState):

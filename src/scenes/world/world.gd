@@ -70,7 +70,7 @@ func chest_state_is_opened(chest: Chest, state: IInventoryState):
 	hbox.move_child(player_inventories_view_wrapper, 1) # maybe will break in the future but now it works
 	
 	chestView.setup(chest.inventory.model)
-	chestView.set_label_text("npc inventory")
+	chestView.set_label_text()
 	not_player_inventory_view = chestView
 	
 func create_borders():
