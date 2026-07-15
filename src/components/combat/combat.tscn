@@ -9,7 +9,6 @@ radius = 16.03122
 
 [node name="combat" type="Node2D" unique_id=1201524011]
 script = ExtResource("1_tsgq2")
-target_group = null
 
 [node name="attack_cooldown" type="Timer" parent="." unique_id=883660267]
 wait_time = 0.5
@@ -28,6 +27,9 @@ script = ExtResource("1_a0al6")
 [node name="State" type="Node2D" parent="." unique_id=407011118]
 script = ExtResource("1_vyohi")
 
+[node name="in_combat_release" type="Timer" parent="." unique_id=1238696718]
+
 [connection signal="timeout" from="attack_cooldown" to="Model" method="_on_attack_cooldown_timeout"]
 [connection signal="body_entered" from="attack_range" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="attack_range" to="." method="_on_attack_range_body_exited"]
+[connection signal="timeout" from="in_combat_release" to="Model" method="_on_in_combat_release_timeout"]

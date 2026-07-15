@@ -4,6 +4,12 @@ var collision_layer: int = 1 << 2 # Cooked
 var interact_radius: int = 15
 var slot_size: int = 64
 
+var STATS_NAMES: Dictionary[String, String] = {
+	"MAX_HP": "max_hp",
+	"DAMAGE": "damage",
+	"REGENERATION": "regeneration"
+}
+
 func is_player(body: Node) -> bool:
 	return body.is_in_group("player")
 	

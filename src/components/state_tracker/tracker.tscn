@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ccmjo41fbied4"]
+
+[ext_resource type="Script" uid="uid://cbcodws0pgcuh" path="res://src/components/state_tracker/tracker.gd" id="1_ame8n"]
+
+[node name="Tracker" type="Node2D" unique_id=1660150016]
+script = ExtResource("1_ame8n")

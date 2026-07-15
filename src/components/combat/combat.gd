@@ -9,6 +9,9 @@ class_name Combat
 func setup(stats: Stats):
 	model.setup(state, stats)
 
+func took_damage() -> void:
+	model.took_damage()
+
 func _on_attack_range_body_entered(body: Node2D) -> void:
 	if body.is_in_group(target_group):
 		model.add_target(body)

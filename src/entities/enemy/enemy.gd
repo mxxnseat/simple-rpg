@@ -17,7 +17,9 @@ signal items_dropped(items: Array[DropItemResource])
 @onready var stats: Stats = $Stats
 
 func _ready():
-	health_bar.setup(state)
+	stats.set_max_hp(40)
+	combat.setup(stats)
+	health_bar.setup(stats, combat.state)
 	model.setup(state)
 	controller.setup(model, combat.model)
 	anim_manager.setup(state)
@@ -25,12 +27,15 @@ func _ready():
 	
 	drop_item.setup(inventory.model)
 	
-	combat.setup(stats)
 	gear.setup(stats, inventory)
-	health_bar.model.died.connect(_on_health_bar_died)
+	health_bar.state_changed.connect(_on_health_bar_state_changed)
 	combat.model.attack_sig.connect(_on_combat_attack_sig)
 	fill_inventory()
 
+func _on_health_bar_state_changed(state: HealthBarState) -> void:
+	if state.is_dead:
+		_on_health_bar_died()
+		
 func _on_health_bar_died():
 	model.die()
 	await anim_manager.on_death()
@@ -39,6 +44,7 @@ func _on_health_bar_died():
 	
 func take_damage(amount: int) -> void:
 	health_bar.take_damage(amount)
+	combat.took_damage()
 
 func _on_combat_attack_sig() -> void:
 	model.attack()

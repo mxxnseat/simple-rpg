@@ -39,3 +39,8 @@ script = ExtResource("3_72ex8")
 
 [node name="Model" type="Node2D" parent="." unique_id=2001373237]
 script = ExtResource("4_qhu7x")
+
+[node name="RegenerationTimer" type="Timer" parent="." unique_id=355692798]
+autostart = true
+
+[connection signal="timeout" from="RegenerationTimer" to="." method="_on_regeneration_timer_timeout"]

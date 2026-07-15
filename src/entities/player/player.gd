@@ -24,7 +24,9 @@ func _ready():
 	
 func setup():
 	pickup_items.setup(20)
-	health_bar.setup(state)
+	stats.set_max_hp(300)
+	combat.setup(stats)
+	health_bar.setup(stats, combat.state)
 	model.setup(state)
 	controller.setup(
 		model,
@@ -35,24 +37,28 @@ func setup():
 		interactable.model
 	)
 	anim_manager.setup(state)
-	combat.setup(stats)
 	gear.setup(stats, inventory)
 	
 	inventory.setup(10)
 	interactable.setup(inventory.model)
 	drop_item_component.setup(inventory.model)
 	
-	health_bar.model.died.connect(_on_health_bar_died)
+	health_bar.state_changed.connect(_on_health_bar_state_changed)
 	pickup_items.model.picked_up.connect(_on_item_picked_up)
 	inventory.model.inventory_updated.connect(_on_inventory_updated)
 	
+func _on_health_bar_state_changed(state: HealthBarState):
+	if state.is_dead:
+		_on_health_bar_died()
+
 func _on_health_bar_died():
 	model.die()
 	await anim_manager.on_death()
 	queue_free()
-
+	
 func take_damage(amount: int):
 	health_bar.take_damage(amount)
+	combat.took_damage()
 	
 func _on_item_picked_up(item: Item) -> void:
 	inventory.add_item(item, 1)

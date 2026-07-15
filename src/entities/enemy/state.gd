@@ -7,9 +7,7 @@ enum STATES { IDLE, ATTACKING, MOVING, HURT, DEAD }
 
 var current_state: STATES = STATES.IDLE
 var facing_direction = Vector2.ZERO
-var max_hp: int = 100
 var speed: float = 50.0
-var damage: int = 10
 var velocity: Vector2 = Vector2.ZERO
 
 var target_player: Player = null
@@ -27,4 +25,4 @@ func move(direction: Vector2) -> void:
 	
 func set_state(state: STATES) -> void:
 	current_state = state
-	emit_signal("state_changed", current_state)
+	state_changed.emit(current_state)
