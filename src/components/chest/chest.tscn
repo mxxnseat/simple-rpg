@@ -56,3 +56,6 @@ shape = SubResource("RectangleShape2D_5qyka")
 
 [node name="Inventory" parent="." unique_id=463960440 instance=ExtResource("4_5qyka")]
 metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1012140325]
+volume_db = -6.0
