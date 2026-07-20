@@ -10,6 +10,9 @@ func _ready() -> void:
 
 func set_max_hp(value: float):
 	_set_stat(Global.STATS_NAMES["MAX_HP"], value)
+	
+func set_damage(value: float):
+	_set_stat(Global.STATS_NAMES["DAMAGE"], value)
 
 func _set_stat(name: String, value: float) -> void:
 	stats[name] = Stat.new(value)

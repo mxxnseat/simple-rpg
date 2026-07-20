@@ -5,11 +5,64 @@
 [ext_resource type="PackedScene" uid="uid://yse1t2wcq3sa" path="res://src/components/inventory/slot_item/slot_item.tscn" id="2_gda3f"]
 [ext_resource type="Script" uid="uid://q1shi6ff0c33" path="res://src/entities/player/gear_view/stats_text_wrapper.gd" id="3_4gagw"]
 [ext_resource type="PackedScene" uid="uid://k548m77ympaf" path="res://src/entities/player/gear_view/stat/stat.tscn" id="4_4gagw"]
+[ext_resource type="Texture2D" uid="uid://betlbqkmf4lxo" path="res://art/sprites/characters/player.png" id="5_dtkbi"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iqluv"]
 texture = ExtResource("1_7noab")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iqluv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r3bfw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31cv2"]
+atlas = ExtResource("5_dtkbi")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf23h"]
+atlas = ExtResource("5_dtkbi")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dt7fs"]
+atlas = ExtResource("5_dtkbi")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqfne"]
+atlas = ExtResource("5_dtkbi")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnwbv"]
+atlas = ExtResource("5_dtkbi")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gl8cc"]
+atlas = ExtResource("5_dtkbi")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2pclc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31cv2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pf23h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dt7fs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqfne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnwbv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gl8cc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7noab"]
 
@@ -30,8 +83,28 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_iqluv")
 script = ExtResource("3_4gagw")
 
 [node name="AttackStat" parent="HBoxContainer/StatsTextWrapper" unique_id=652665502 instance=ExtResource("4_4gagw")]
-position = Vector2(18, 174)
+layout_mode = 0
+offset_left = 18.0
+offset_top = 174.0
+offset_right = 18.0
+offset_bottom = 174.0
 stat_label_text = "Attack:"
+
+[node name="Player" type="Panel" parent="HBoxContainer/StatsTextWrapper" unique_id=1206431448]
+custom_minimum_size = Vector2(128, 65)
+layout_mode = 0
+offset_left = 75.0
+offset_top = 7.0
+offset_right = 205.0
+offset_bottom = 137.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_r3bfw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/StatsTextWrapper/Player" unique_id=225354451]
+position = Vector2(65, 25)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_2pclc")
+autoplay = "default"
+frame_progress = 0.124119855
 
 [node name="SlotsWrapper" type="Panel" parent="HBoxContainer" unique_id=1353531898]
 custom_minimum_size = Vector2(269.5, 0)

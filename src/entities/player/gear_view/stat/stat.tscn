@@ -5,9 +5,14 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_2ogag"]
 font = ExtResource("2_vvt8h")
+font_color = Color(0.26666668, 0.14901961, 0.03529412, 1)
+shadow_color = Color(0.26666668, 0.14901961, 0.03529412, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_vvt8h"]
 font = ExtResource("2_vvt8h")
+font_color = Color(0.26666668, 0.14901961, 0.03529412, 1)
+outline_color = Color(0.26666668, 0.14901961, 0.03529412, 1)
+shadow_color = Color(0.26666668, 0.14901961, 0.03529412, 1)
 
 [node name="Stat" type="HBoxContainer" unique_id=903863097]
 script = ExtResource("1_aqklq")
