@@ -1,10 +1,11 @@
-extends Panel
+extends PanelContainer
 class_name GearView
 
 var gear: Gear
 var gear_inventory_model: InventoryModel
 
-@onready var weapon_slot: SlotItem = $WeaponSlot
+@onready var weapon_slot: SlotItem = $HBoxContainer/SlotsWrapper/WeaponSlot
+@onready var stats_text_wrapper: GearStatsTextWrapper = $HBoxContainer/StatsTextWrapper
 
 func setup(p_gear: Gear):
 	gear = p_gear
@@ -12,6 +13,7 @@ func setup(p_gear: Gear):
 	gear.inventory.model.inventory_updated.connect(_on_inventory_updated)
 	
 	weapon_slot.setup(gear.inventory.model)
+	stats_text_wrapper.setup(gear.stats)
 	
 	refresh(gear.inventory.model.state.get_current_state())
 

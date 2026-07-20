@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://k548m77ympaf"]
+
+[ext_resource type="Script" uid="uid://868ylpyqju10" path="res://src/entities/player/gear_view/stat/stat.gd" id="1_aqklq"]
+[ext_resource type="FontFile" uid="uid://be1pwdumfvqlh" path="res://fonts/Minecraftia-Regular.ttf" id="2_vvt8h"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2ogag"]
+font = ExtResource("2_vvt8h")
+
+[sub_resource type="LabelSettings" id="LabelSettings_vvt8h"]
+font = ExtResource("2_vvt8h")
+
+[node name="Stat" type="HBoxContainer" unique_id=903863097]
+script = ExtResource("1_aqklq")
+
+[node name="StatLabel" type="Label" parent="." unique_id=1188301338]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_2ogag")
+
+[node name="StatValue" type="Label" parent="." unique_id=1716897362]
+custom_minimum_size = Vector2(26, 0)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_vvt8h")

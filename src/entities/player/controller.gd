@@ -29,7 +29,7 @@ func _ready():
 	
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack"):
-		model.attack()
+		#model.attack()
 		combat_model.attack()
 	if event.is_action_pressed("pickup"):
 		player_pickup_items_model.pickup()

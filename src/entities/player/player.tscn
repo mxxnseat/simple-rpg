@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ba1ax40dovxmn" path="res://src/components/drop_item/drop_item.tscn" id="12_kc3pt"]
 [ext_resource type="PackedScene" uid="uid://cu6xvjbnn21ur" path="res://src/components/stats/stats.tscn" id="13_3c4mh"]
 [ext_resource type="PackedScene" uid="uid://bgscgqvl8wqvc" path="res://src/components/gear/gear.tscn" id="14_p2qdy"]
+[ext_resource type="AudioStream" uid="uid://dqe1b2i8pj4bh" path="res://sfx/player-attack.mp3" id="15_lqdhu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
 atlas = ExtResource("2_ketdh")
@@ -431,6 +432,30 @@ radius = 4.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
 radius = 18.0
 
+[sub_resource type="Animation" id="Animation_p2qdy"]
+resource_name = "attack_sfx"
+length = 0.8
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("15_lqdhu")
+}],
+"times": PackedFloat32Array(0.2)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lqdhu"]
+_data = {
+&"attack_sfx": SubResource("Animation_p2qdy")
+}
+
 [node name="player" type="CharacterBody2D" unique_id=1813256861 groups=["player"]]
 collision_layer = 3
 collision_mask = 3
@@ -443,7 +468,7 @@ script = ExtResource("3_eb65w")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="AnimationManager" unique_id=1456654937]
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_apa73")
-animation = &"back_idle"
+animation = &"front_attack"
 offset = Vector2(0, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1478539495]
@@ -487,6 +512,11 @@ target_group = "enemy"
 [node name="Stats" parent="." unique_id=434526498 instance=ExtResource("13_3c4mh")]
 
 [node name="Gear" parent="." unique_id=426232351 instance=ExtResource("14_p2qdy")]
+
+[node name="sfx_player" type="AnimationPlayer" parent="." unique_id=447296829]
+libraries/ = SubResource("AnimationLibrary_lqdhu")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1318179725]
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]

@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://cew0ct6qra57r" path="res://src/components/chest/view.gd" id="1_oia4a"]
 [ext_resource type="Texture2D" uid="uid://865n1vwx42wn" path="res://art/sprites/objects/chest_01.png" id="2_voi3b"]
 [ext_resource type="PackedScene" uid="uid://h3lrdkrkm2xe" path="res://src/components/inventory/inventory.tscn" id="4_5qyka"]
+[ext_resource type="AudioStream" uid="uid://bo0eg5kl2s85b" path="res://sfx/chest-close.mp3" id="5_hho73"]
+[ext_resource type="AudioStream" uid="uid://bmuosr5wdc7x0" path="res://sfx/chest-open.mp3" id="5_yfxpg"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5qyka"]
 
@@ -37,6 +39,49 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5qyka"]
 size = Vector2(14, 5.5)
 
+[sub_resource type="Animation" id="Animation_mpssi"]
+resource_name = "close_sfx"
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_hho73")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="Animation" id="Animation_5qyka"]
+resource_name = "open_sfx"
+length = 0.3
+tracks/0/type = "audio"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_yfxpg")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/0/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yfxpg"]
+_data = {
+&"close_sfx": SubResource("Animation_mpssi"),
+&"open_sfx": SubResource("Animation_5qyka")
+}
+
 [node name="chest" type="StaticBody2D" unique_id=1658509279 groups=["interactable"]]
 y_sort_enabled = true
 collision_layer = 7
@@ -57,5 +102,7 @@ shape = SubResource("RectangleShape2D_5qyka")
 [node name="Inventory" parent="." unique_id=463960440 instance=ExtResource("4_5qyka")]
 metadata/_edit_use_anchors_ = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1012140325]
-volume_db = -6.0
+[node name="sfx_player" type="AnimationPlayer" parent="." unique_id=1137557212]
+libraries/ = SubResource("AnimationLibrary_yfxpg")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2076383]

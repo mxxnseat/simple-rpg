@@ -37,15 +37,16 @@ func attack():
 		return
 	state.set_is_in_combat(true)
 	state.set_is_attack_cooldown(true)
+	state.set_is_attacking(true)
 	cooldown_timer.start()
 	in_combat_release_timer.start()
 	
-	attack_sig.emit()
 	var targets = get_targets()
 	
 	for target in targets:
 		var damage = stats.get_stat("damage").get_value()
 		target.take_damage(damage)
+	state.set_is_attacking(false)
 		
 func _on_attack_cooldown_timeout() -> void:
 	state.set_is_attack_cooldown(false)

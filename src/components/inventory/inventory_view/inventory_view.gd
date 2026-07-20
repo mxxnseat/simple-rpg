@@ -23,7 +23,7 @@ func _align_grid_container_elements() -> void:
 	var grid_columns: int = usable_width / Global.slot_size
 	
 	var total_slot_width: float = grid_columns * Global.slot_size
-	var separation: int = max((usable_width - total_slot_width) / (grid_columns - 1), 0)
+	var separation: int = max((usable_width - total_slot_width) / (grid_columns - 1), 0) + 1
 	
 	grid.columns = grid_columns
 	grid.add_theme_constant_override("h_separation", int(separation))

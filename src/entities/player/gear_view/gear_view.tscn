@@ -1,20 +1,47 @@
 [gd_scene format=3 uid="uid://rghq2f7ackty"]
 
+[ext_resource type="Texture2D" uid="uid://budd1dfxdpmqs" path="res://art/inventory/user_gear.png" id="1_7noab"]
 [ext_resource type="Script" uid="uid://c2y21m0m5xjnr" path="res://src/entities/player/gear_view/gear_view.gd" id="1_gda3f"]
 [ext_resource type="PackedScene" uid="uid://yse1t2wcq3sa" path="res://src/components/inventory/slot_item/slot_item.tscn" id="2_gda3f"]
+[ext_resource type="Script" uid="uid://q1shi6ff0c33" path="res://src/entities/player/gear_view/stats_text_wrapper.gd" id="3_4gagw"]
+[ext_resource type="PackedScene" uid="uid://k548m77ympaf" path="res://src/entities/player/gear_view/stat/stat.tscn" id="4_4gagw"]
 
-[node name="GearView" type="Panel" unique_id=595563029]
-custom_minimum_size = Vector2(300, 300)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iqluv"]
+texture = ExtResource("1_7noab")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iqluv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7noab"]
+
+[node name="GearView" type="PanelContainer" unique_id=1785060730]
+custom_minimum_size = Vector2(539, 279)
+offset_right = 542.0
+offset_bottom = 279.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_iqluv")
 script = ExtResource("1_gda3f")
 
-[node name="WeaponSlot" parent="." unique_id=1266966778 instance=ExtResource("2_gda3f")]
-layout_mode = 0
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 218.0
-offset_top = 118.0
-offset_right = -18.0
-offset_bottom = -118.0
-grow_horizontal = 1
-grow_vertical = 1
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1228395612]
+layout_mode = 2
+
+[node name="StatsTextWrapper" type="Panel" parent="HBoxContainer" unique_id=1589354522]
+custom_minimum_size = Vector2(269.5, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_iqluv")
+script = ExtResource("3_4gagw")
+
+[node name="AttackStat" parent="HBoxContainer/StatsTextWrapper" unique_id=652665502 instance=ExtResource("4_4gagw")]
+position = Vector2(18, 174)
+stat_label_text = "Attack:"
+
+[node name="SlotsWrapper" type="Panel" parent="HBoxContainer" unique_id=1353531898]
+custom_minimum_size = Vector2(269.5, 0)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_7noab")
+
+[node name="WeaponSlot" parent="HBoxContainer/SlotsWrapper" unique_id=1266966778 instance=ExtResource("2_gda3f")]
+layout_mode = 1
+offset_left = 192.0
+offset_top = 103.0
+offset_right = -13.5
+offset_bottom = -112.0

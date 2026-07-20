@@ -6,6 +6,7 @@ var sword: Item = load("res://src/items/beginner_sword.tres")
 signal inventory_updated(state: IInventoryState, previous_state: IInventoryState)
 signal items_dropped(items: Array[DropItemResource])
 
+@onready var sfx_player: AnimationPlayer = $sfx_player
 @onready var state: PlayerState = $State
 @onready var model: PlayerModel = $Model
 @onready var controller: PlayerController = $Controller
@@ -43,10 +44,16 @@ func setup():
 	interactable.setup(inventory.model)
 	drop_item_component.setup(inventory.model)
 	
+	combat.state.state_changed.connect(_on_combat_state_changed)
 	health_bar.state_changed.connect(_on_health_bar_state_changed)
 	pickup_items.model.picked_up.connect(_on_item_picked_up)
 	inventory.model.inventory_updated.connect(_on_inventory_updated)
 	
+func _on_combat_state_changed(state: ICombatState, previous_state: ICombatState):
+	if state.is_attacking:
+		model.attack()
+		sfx_player.play("attack_sfx")
+		
 func _on_health_bar_state_changed(state: HealthBarState):
 	if state.is_dead:
 		_on_health_bar_died()

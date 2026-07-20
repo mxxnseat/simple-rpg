@@ -12,6 +12,7 @@ func setup(p_state: PlayerState):
 	
 func is_not_attacking_with(condition: bool) -> bool:
 	return not is_attacking and condition
+	
 func _on_state_changed(action: PlayerState.STATES):
 	if action == PlayerState.STATES.ATTACKING:
 		is_attacking = true

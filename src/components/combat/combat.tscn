@@ -11,7 +11,6 @@ radius = 16.03122
 script = ExtResource("1_tsgq2")
 
 [node name="attack_cooldown" type="Timer" parent="." unique_id=883660267]
-wait_time = 0.5
 
 [node name="attack_range" type="Area2D" parent="." unique_id=1326603136]
 collision_layer = 2

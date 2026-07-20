@@ -170,8 +170,7 @@ layout_mode = 2
 
 [node name="PlayerGearView" parent="UI/CenterContainer/HBoxContainer/VBoxContainer" unique_id=595563029 instance=ExtResource("12_qqcoc")]
 layout_mode = 2
-size_flags_horizontal = 4
 
 [node name="PlayerInventoryView" parent="UI/CenterContainer/HBoxContainer/VBoxContainer" unique_id=160212785 instance=ExtResource("8_gd3mq")]
-custom_minimum_size = Vector2(579, 279)
+custom_minimum_size = Vector2(539, 279)
 layout_mode = 2
