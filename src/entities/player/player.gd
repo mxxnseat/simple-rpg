@@ -25,7 +25,6 @@ func _ready():
 	
 func setup():
 	pickup_items.setup(20)
-	stats.set_max_hp(300)
 	combat.setup(stats)
 	health_bar.setup(stats, combat.state)
 	model.setup(state)

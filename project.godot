@@ -19,11 +19,6 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 Global="*uid://kqn2so6c5hei"
 Sound="*uid://cklnvkjajgeg2"
 
-[display]
-
-window/size/viewport_width=1920
-window/size/viewport_height=1480
-
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/gut/plugin.cfg")

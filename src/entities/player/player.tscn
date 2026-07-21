@@ -510,6 +510,7 @@ target_group = "enemy"
 [node name="DropItem" parent="." unique_id=296015275 instance=ExtResource("12_kc3pt")]
 
 [node name="Stats" parent="." unique_id=434526498 instance=ExtResource("13_3c4mh")]
+default_max_hp = 300.0
 
 [node name="Gear" parent="." unique_id=426232351 instance=ExtResource("14_p2qdy")]
 

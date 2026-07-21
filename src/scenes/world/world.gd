@@ -1,6 +1,6 @@
 extends Node2D
 
-var enemy_scene = preload("res://src/entities/enemy/enemy.tscn")
+var enemy_scene = preload("res://src/entities/slime/slime.tscn")
 var pickup_scene = preload("res://src/components/pickup/pickup.tscn")
 var inventory_view_scene = preload("res://src/components/inventory/inventory_view/inventory_view.tscn")
 
@@ -9,7 +9,7 @@ var inventory_view_scene = preload("res://src/components/inventory/inventory_vie
 @onready var player_inventories_view_wrapper =  $UI/CenterContainer/HBoxContainer/VBoxContainer
 @onready var world_drop_zone: WorldDropZone = $UI/WorldDropZone
 @onready var player: Player = $player
-@onready var enemy: Enemy = $enemy
+@onready var enemy: Enemy = $slime
 @onready var chests_wrapper: Node2D = $chests
 
 var not_player_inventory_view: InventoryView = null

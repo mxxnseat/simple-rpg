@@ -4,15 +4,16 @@
 [ext_resource type="Script" uid="uid://b0kq27xoxy7rm" path="res://src/scenes/world/world.gd" id="1_qfnet"]
 [ext_resource type="Script" uid="uid://32pln78xii5" path="res://src/scenes/world/drop_inventory_item_world_zone.gd" id="2_hrb3u"]
 [ext_resource type="Texture2D" uid="uid://cf1wj0dtrsqj2" path="res://art/sprites/tilesets/grass.png" id="2_k0juu"]
+[ext_resource type="PackedScene" uid="uid://dbwjhq6t64irn" path="res://src/entities/slime/slime.tscn" id="2_qfn71"]
 [ext_resource type="Texture2D" uid="uid://ceofvoqitncjs" path="res://art/sprites/objects/objects.png" id="3_71j4m"]
 [ext_resource type="PackedScene" uid="uid://vps80j7a5adm" path="res://src/entities/player/player.tscn" id="4_k0juu"]
-[ext_resource type="PackedScene" uid="uid://dnp8djfynp2e8" path="res://src/entities/enemy/enemy.tscn" id="5_71j4m"]
-[ext_resource type="Resource" uid="uid://cbr4bqpuv3qg8" path="res://src/items/slime_loot_table.tres" id="7_iwh12"]
 [ext_resource type="PackedScene" uid="uid://brfpkf05homm3" path="res://src/components/inventory/inventory_view/inventory_view.tscn" id="8_gd3mq"]
 [ext_resource type="PackedScene" uid="uid://bgagjdvxapwbk" path="res://src/components/chest/chest.tscn" id="9_7r4gi"]
 [ext_resource type="Script" uid="uid://b045ep80narix" path="res://src/resources/inventory_slot_data.gd" id="9_qfn71"]
 [ext_resource type="Resource" uid="uid://cn4q1f6i0r21i" path="res://src/items/beginner_sword.tres" id="10_qqcoc"]
 [ext_resource type="PackedScene" uid="uid://rghq2f7ackty" path="res://src/entities/player/gear_view/gear_view.tscn" id="12_qqcoc"]
+[ext_resource type="Resource" uid="uid://cbr4bqpuv3qg8" path="res://src/items/slime_loot_table.tres" id="13_1sa8s"]
+[ext_resource type="PackedScene" uid="uid://0hx3hqk3bgq2" path="res://src/entities/big_slime/big_slime.tscn" id="13_qqcoc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qfnet"]
 texture = ExtResource("1_4wyf3")
@@ -127,10 +128,6 @@ position = Vector2(51.964634, 68.02704)
 shape = SubResource("RectangleShape2D_qfnet")
 metadata/enemies_count = 1
 
-[node name="enemy" parent="." unique_id=1281902232 instance=ExtResource("5_71j4m")]
-position = Vector2(165, 70)
-loot_table = ExtResource("7_iwh12")
-
 [node name="chests" type="Node2D" parent="." unique_id=485693543]
 y_sort_enabled = true
 
@@ -174,3 +171,10 @@ layout_mode = 2
 [node name="PlayerInventoryView" parent="UI/CenterContainer/HBoxContainer/VBoxContainer" unique_id=160212785 instance=ExtResource("8_gd3mq")]
 custom_minimum_size = Vector2(539, 279)
 layout_mode = 2
+
+[node name="slime" parent="." unique_id=1281902232 instance=ExtResource("2_qfn71")]
+position = Vector2(163.96513, 67.08529)
+loot_table = ExtResource("13_1sa8s")
+
+[node name="big_slime" parent="." unique_id=1736652932 instance=ExtResource("13_qqcoc")]
+position = Vector2(235.95056, 95.122734)

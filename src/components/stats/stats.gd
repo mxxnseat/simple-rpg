@@ -3,10 +3,14 @@ extends Node
 
 var stats: Dictionary[String, Stat] = {}
 
+@export var default_damage: float = 10.0
+@export var default_max_hp: float = 10.0
+@export var default_regeneration: float = 10.0
+
 func _ready() -> void:
-	stats[Global.STATS_NAMES["DAMAGE"]] = Stat.new(10.0)
-	stats[Global.STATS_NAMES["MAX_HP"]] = Stat.new(10.0)
-	stats[Global.STATS_NAMES["REGENERATION"]] = Stat.new(10.0)
+	stats[Global.STATS_NAMES["DAMAGE"]] = Stat.new(default_damage)
+	stats[Global.STATS_NAMES["MAX_HP"]] = Stat.new(default_max_hp)
+	stats[Global.STATS_NAMES["REGENERATION"]] = Stat.new(default_regeneration)
 
 func set_max_hp(value: float):
 	_set_stat(Global.STATS_NAMES["MAX_HP"], value)
