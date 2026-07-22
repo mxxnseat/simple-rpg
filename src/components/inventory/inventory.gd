@@ -7,7 +7,7 @@ class_name Inventory
 func setup(capacity: int = 32):
 	state.setup(capacity)
 	model.setup(state)
-	
+
 func has_item(id: int) -> bool:
 	return model.has_item(id)
 	

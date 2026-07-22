@@ -55,8 +55,7 @@ func setup_chest_ui_listeners():
 			func(state: IInventoryState, previous_state: IInventoryState): 
 				_chest_on_inventory_updated(chest, state)
 		)
-		
-		
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("close_dialog"):
 		quest_dialog.close()

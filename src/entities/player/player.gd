@@ -32,7 +32,7 @@ func setup(quest_log: QuestLog):
 		interactable.model,
 		quest_log
 	)
-	anim_manager.setup(state)
+	anim_manager.setup(state, sfx_player)
 	gear.setup(stats, inventory)
 	
 	inventory.setup(10)
@@ -47,7 +47,6 @@ func setup(quest_log: QuestLog):
 func _on_combat_state_changed(state: ICombatState, previous_state: ICombatState):
 	if state.is_attacking:
 		model.attack()
-		sfx_player.play("attack_sfx")
 		
 func _on_health_bar_state_changed(state: HealthBarState):
 	if state.is_dead:
@@ -64,6 +63,7 @@ func take_damage(amount: int):
 	
 func _on_item_picked_up(item: Item) -> void:
 	inventory.add_item(item, 1)
+	sfx_player.play("pickup_sfx")
 	
 func open_inventory():
 	inventory.open()
@@ -75,6 +75,13 @@ func close_inventory():
 	
 func _on_inventory_updated(state: IInventoryState, previous_state: IInventoryState) -> void:
 	inventory_updated.emit(state, previous_state)
+	
+	if state.is_opened != previous_state.is_opened:
+		sfx_player.play("inventory_opened_sfx")
+	if state.slots.size() > previous_state.slots.size():
+		sfx_player.play("item_added_sfx")
+	if previous_state.slots.size() > state.slots.size():
+		sfx_player.play("item_dropped_sfx")
 	
 func drop_item(item: InventorySlotData):
 	var item_to_drop: Array[DropItemResource] = drop_item_component.drop(global_position, item.position, item.count)

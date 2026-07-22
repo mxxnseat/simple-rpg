@@ -2,11 +2,15 @@ extends Node2D
 class_name PlayerAnimationManager
 
 var state: PlayerState
+var sfx_player: AnimationPlayer
+
 @onready var animation_sprite = $AnimatedSprite2D
+@onready var footsteps_player: AudioStreamPlayer = $FootStepsPlayer
 var is_attacking = false
 
-func setup(p_state: PlayerState):
+func setup(p_state: PlayerState, sfx_player: AnimationPlayer):
 	state = p_state
+	self.sfx_player = sfx_player
 	
 	state.state_changed.connect(_on_state_changed)
 	
@@ -36,6 +40,8 @@ func on_idle():
 	flip_h()
 		
 func on_moving():
+	if not footsteps_player.playing:
+		footsteps_player.play()
 	if state.facing_direction.y > 0:
 		animation_sprite.play("front_walk")
 	elif state.facing_direction.y < 0:
@@ -49,6 +55,7 @@ func on_death():
 	await animation_sprite.animation_finished
 		
 func on_attacking():
+	sfx_player.play("attack_sfx")
 	if state.facing_direction.y > 0:
 		animation_sprite.play("front_attack")
 	elif state.facing_direction.y < 0:
