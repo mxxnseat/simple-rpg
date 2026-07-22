@@ -1,8 +1,13 @@
 extends Panel
 class_name SlotItem
 
+var slot_background = preload("res://art/inventory/inventiory_slot.png")
+
 @onready var controller: SlotItemController = $Controller
 @onready var view = $View
+@onready var background = $Background
+
+@export var empty_slot_override: Texture2D
 
 var inventory: InventoryModel
 var slot_data: InventorySlotData
@@ -39,5 +44,7 @@ func update_view(p_slot_data: InventorySlotData):
 	slot_data = p_slot_data
 	if not p_slot_data:
 		view.texture = null
+		background.texture = empty_slot_override if empty_slot_override else slot_background
 	else:
 		view.texture = slot_data.item.icon
+		background.texture = slot_background

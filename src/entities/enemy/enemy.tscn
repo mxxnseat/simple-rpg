@@ -35,5 +35,6 @@ target_group = "player"
 [node name="Inventory" parent="." unique_id=463960440 instance=ExtResource("10_nqckx")]
 
 [node name="Stats" parent="." unique_id=434526498 instance=ExtResource("11_a0n1b")]
+default_max_hp = 40.0
 
 [node name="Gear" parent="." unique_id=426232351 instance=ExtResource("12_8pgt6")]

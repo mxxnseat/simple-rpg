@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="Quest" format=3 uid="uid://cjhelviuld334"]
+
+[ext_resource type="Script" uid="uid://yqnk5n22t7gi" path="res://src/resources/quest/quest_condition.gd" id="1_vdccd"]
+[ext_resource type="Script" uid="uid://inf1dhuqmqrw" path="res://src/resources/quest/action_pressed.gd" id="2_617xu"]
+[ext_resource type="Script" uid="uid://bpjxqyrlmmcqx" path="res://src/resources/quest/quest.gd" id="2_vgirv"]
+[ext_resource type="Script" uid="uid://bpbtqw808i4jc" path="res://src/resources/quest/kill_enemy.gd" id="3_617xu"]
+[ext_resource type="Resource" uid="uid://cu8vdmryigw6f" path="res://src/items/key.tres" id="4_7v35r"]
+[ext_resource type="Script" uid="uid://cfd1it4yrvtbi" path="res://src/resources/quest/inventory_item_existence.gd" id="5_1sur0"]
+[ext_resource type="Resource" uid="uid://cn4q1f6i0r21i" path="res://src/items/beginner_sword.tres" id="6_irser"]
+
+[sub_resource type="Resource" id="Resource_dapoc"]
+script = ExtResource("2_617xu")
+action = 4
+description = "Press arrows to move"
+type = 1
+metadata/_custom_type_script = "uid://inf1dhuqmqrw"
+
+[sub_resource type="Resource" id="Resource_6ddu8"]
+script = ExtResource("2_617xu")
+action = 2
+description = "Press E to attack"
+type = 1
+metadata/_custom_type_script = "uid://inf1dhuqmqrw"
+
+[sub_resource type="Resource" id="Resource_7v35r"]
+script = ExtResource("3_617xu")
+enemy_id = 1
+description = "Let's kill a slime"
+metadata/_custom_type_script = "uid://bpbtqw808i4jc"
+
+[sub_resource type="Resource" id="Resource_lknfi"]
+script = ExtResource("5_1sur0")
+expected_item = ExtResource("4_7v35r")
+description = "Press F to pickup item"
+type = 2
+metadata/_custom_type_script = "uid://cfd1it4yrvtbi"
+
+[sub_resource type="Resource" id="Resource_irser"]
+script = ExtResource("2_617xu")
+action = 3
+description = "Press B to open an inventory"
+type = 1
+metadata/_custom_type_script = "uid://inf1dhuqmqrw"
+
+[sub_resource type="Resource" id="Resource_d2p13"]
+script = ExtResource("2_617xu")
+description = "Press Q to interact with chests and whatever you think is interactable :)"
+type = 1
+metadata/_custom_type_script = "uid://inf1dhuqmqrw"
+
+[sub_resource type="Resource" id="Resource_q0bwe"]
+script = ExtResource("5_1sur0")
+expected_item = ExtResource("6_irser")
+description = "Drag item from chest to your inventory"
+type = 2
+metadata/_custom_type_script = "uid://cfd1it4yrvtbi"
+
+[sub_resource type="Resource" id="Resource_1sur0"]
+script = ExtResource("2_617xu")
+action = 5
+description = "Press ESC to close any dialog"
+metadata/_custom_type_script = "uid://inf1dhuqmqrw"
+
+[resource]
+script = ExtResource("2_vgirv")
+conditions = Array[ExtResource("1_vdccd")]([SubResource("Resource_dapoc"), SubResource("Resource_6ddu8"), SubResource("Resource_7v35r"), SubResource("Resource_lknfi"), SubResource("Resource_irser"), SubResource("Resource_d2p13"), SubResource("Resource_q0bwe"), SubResource("Resource_1sur0")])
+metadata/_custom_type_script = "uid://bpjxqyrlmmcqx"

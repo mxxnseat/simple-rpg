@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dcopa77bxoxe8"]
+
+[ext_resource type="Script" uid="uid://cusk83kx764th" path="res://src/components/quest/quest_dialog.gd" id="1_wblbu"]
+[ext_resource type="FontFile" uid="uid://be1pwdumfvqlh" path="res://fonts/Minecraftia-Regular.ttf" id="2_n1fbo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n1fbo"]
+content_margin_left = 12.0
+content_margin_top = 12.0
+content_margin_right = 12.0
+content_margin_bottom = 12.0
+draw_center = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_0kecm"]
+font = ExtResource("2_n1fbo")
+font_size = 24
+
+[node name="QuestDialog" type="Panel" unique_id=1083349320]
+custom_minimum_size = Vector2(579, 120)
+script = ExtResource("1_wblbu")
+
+[node name="Label" type="Label" parent="." unique_id=2060390705]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_n1fbo")
+label_settings = SubResource("LabelSettings_0kecm")
+autowrap_mode = 3

@@ -5,9 +5,6 @@
 [ext_resource type="Script" uid="uid://chhacg5vpq7ve" path="res://src/components/inventory/slot_item/controller.gd" id="2_bruad"]
 [ext_resource type="PackedScene" uid="uid://di7au1lur3744" path="res://src/components/icon/icon.tscn" id="2_sj6vf"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mnh71"]
-texture = ExtResource("1_x2bgy")
-
 [node name="SlotItem" type="Panel" unique_id=1266966778]
 custom_minimum_size = Vector2(64, 64)
 anchors_preset = 15
@@ -17,8 +14,16 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxTexture_mnh71")
 script = ExtResource("1_4ng10")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1320377464]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_x2bgy")
 
 [node name="View" parent="." unique_id=1384078440 instance=ExtResource("2_sj6vf")]
 layout_mode = 1

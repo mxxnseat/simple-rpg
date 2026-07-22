@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://q1shi6ff0c33" path="res://src/entities/player/gear_view/stats_text_wrapper.gd" id="3_4gagw"]
 [ext_resource type="PackedScene" uid="uid://k548m77ympaf" path="res://src/entities/player/gear_view/stat/stat.tscn" id="4_4gagw"]
 [ext_resource type="Texture2D" uid="uid://betlbqkmf4lxo" path="res://art/sprites/characters/player.png" id="5_dtkbi"]
+[ext_resource type="Texture2D" uid="uid://05xlqnph4qta" path="res://art/inventory/weapon_slot.png" id="7_r3bfw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iqluv"]
 texture = ExtResource("1_7noab")
@@ -118,3 +119,4 @@ offset_left = 192.0
 offset_top = 103.0
 offset_right = -13.5
 offset_bottom = -112.0
+empty_slot_override = ExtResource("7_r3bfw")

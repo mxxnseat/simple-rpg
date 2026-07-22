@@ -8,6 +8,7 @@ var player_pickup_items_model: PlayerPickupItemsModel
 var combat_model: CombatModel
 var model: PlayerModel
 var body: Player
+var quest_log: QuestLog
 
 func setup(
 		p_model: PlayerModel,
@@ -15,7 +16,8 @@ func setup(
 		ppi_model: PlayerPickupItemsModel,
 		i_model: InventoryModel,
 		gi_model: InventoryModel,
-		pi_model: PlayerInteractableModel
+		pi_model: PlayerInteractableModel,
+		p_quest_log: QuestLog
 	):
 	model = p_model
 	combat_model = c_model
@@ -23,21 +25,47 @@ func setup(
 	inventory_model = i_model
 	gear_inventory_model = gi_model
 	player_interactable_model = pi_model
+	quest_log = p_quest_log
 
 func _ready():
 	body = get_parent()
 	
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("attack"):
-		#model.attack()
+	if event.is_action_pressed(
+		Global.player_action_to_string(
+			Global.PLAYER_ACTION_TYPES.ATTACK
+		)
+	):
+		quest_log.notify_player_action_pressed(Global.PLAYER_ACTION_TYPES.ATTACK)
 		combat_model.attack()
-	if event.is_action_pressed("pickup"):
+	if event.is_action_pressed(
+		Global.player_action_to_string(
+			Global.PLAYER_ACTION_TYPES.PICKUP
+		)
+	):
+		quest_log.notify_player_action_pressed(Global.PLAYER_ACTION_TYPES.PICKUP)
 		player_pickup_items_model.pickup()
-	if event.is_action_pressed("inventory"):
+	if event.is_action_pressed(
+		Global.player_action_to_string(
+			Global.PLAYER_ACTION_TYPES.INVENTORY
+		)
+	):
+		quest_log.notify_player_action_pressed(Global.PLAYER_ACTION_TYPES.INVENTORY)
 		inventory_model.toggle_opened()
 		gear_inventory_model.toggle_opened()
-	if event.is_action_pressed("interact"):
+	if event.is_action_pressed(
+		Global.player_action_to_string(
+			Global.PLAYER_ACTION_TYPES.INTERACT
+		)
+	):
+		quest_log.notify_player_action_pressed(Global.PLAYER_ACTION_TYPES.INTERACT)
 		player_interactable_model.interact()
+	if event.is_action_pressed("ui_left") or \
+		event.is_action_pressed("ui_right") or \
+		event.is_action_pressed("ui_up") or \
+		event.is_action_pressed("ui_down"):
+		quest_log.notify_player_action_pressed(Global.PLAYER_ACTION_TYPES.MOVE)
+		
 		
 func _physics_process(delta) -> void:
 	handle_movement()

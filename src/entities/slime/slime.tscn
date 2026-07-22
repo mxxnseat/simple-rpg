@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dbwjhq6t64irn"]
 
 [ext_resource type="PackedScene" uid="uid://dnp8djfynp2e8" path="res://src/entities/enemy/enemy.tscn" id="1_7gxn3"]
+[ext_resource type="Script" uid="uid://cewrimjt38j6s" path="res://src/entities/slime/slime.gd" id="2_6gmih"]
 [ext_resource type="Script" uid="uid://bui3mrpxhl8yk" path="res://src/entities/enemy/animation_manager.gd" id="2_g00ph"]
 [ext_resource type="Texture2D" uid="uid://cfvfyr2leglxi" path="res://art/sprites/characters/slime.png" id="3_6gmih"]
 
@@ -445,6 +446,7 @@ radius = 4.1231055
 radius = 12.0
 
 [node name="slime" unique_id=1281902232 instance=ExtResource("1_7gxn3")]
+script = ExtResource("2_6gmih")
 
 [node name="AnimationManager" type="Node2D" parent="." index="9" unique_id=1285425479]
 script = ExtResource("2_g00ph")

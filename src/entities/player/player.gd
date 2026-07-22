@@ -1,8 +1,6 @@
 extends CharacterBody2D
 class_name Player
 
-var sword: Item = load("res://src/items/beginner_sword.tres")
-
 signal inventory_updated(state: IInventoryState, previous_state: IInventoryState)
 signal items_dropped(items: Array[DropItemResource])
 
@@ -20,10 +18,7 @@ signal items_dropped(items: Array[DropItemResource])
 @onready var stats: Stats = $Stats
 @onready var gear: Gear = $Gear
 
-func _ready():
-	setup()
-	
-func setup():
+func setup(quest_log: QuestLog):
 	pickup_items.setup(20)
 	combat.setup(stats)
 	health_bar.setup(stats, combat.state)
@@ -34,7 +29,8 @@ func setup():
 		pickup_items.model,
 		inventory.model,
 		gear.inventory.model,
-		interactable.model
+		interactable.model,
+		quest_log
 	)
 	anim_manager.setup(state)
 	gear.setup(stats, inventory)

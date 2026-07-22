@@ -16,8 +16,12 @@ signal items_dropped(items: Array[DropItemResource])
 @onready var gear: Gear = $Gear
 @onready var stats: Stats = $Stats
 
-func _ready():
-	stats.set_max_hp(40)
+var quest_log: QuestLog
+var enemy_id: int = -1
+
+func setup(p_quest_log: QuestLog):
+	quest_log = p_quest_log
+	
 	combat.setup(stats)
 	health_bar.setup(stats, combat.state)
 	model.setup(state)
@@ -37,6 +41,7 @@ func _on_health_bar_state_changed(state: HealthBarState) -> void:
 		_on_health_bar_died()
 		
 func _on_health_bar_died():
+	quest_log.notify_enemy_died(self)
 	model.die()
 	await anim_manager.on_death()
 	drop_items()

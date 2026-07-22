@@ -10,6 +10,21 @@ var STATS_NAMES: Dictionary[String, String] = {
 	"REGENERATION": "regeneration"
 }
 
+enum PLAYER_ACTION_TYPES { INTERACT, PICKUP, ATTACK, INVENTORY, MOVE, CLOSE_DIALOG }
+
+func player_action_to_string(action: PLAYER_ACTION_TYPES) -> String:
+	if action == PLAYER_ACTION_TYPES.INTERACT:
+		return "interact"
+	if action == PLAYER_ACTION_TYPES.PICKUP:
+		return "pickup"
+	if action == PLAYER_ACTION_TYPES.ATTACK:
+		return "attack"
+	if action == PLAYER_ACTION_TYPES.INVENTORY:
+		return "inventory"
+	if action == PLAYER_ACTION_TYPES.MOVE:
+		return "move"
+	return "unknown"
+
 func is_player(body: Node) -> bool:
 	return body.is_in_group("player")
 	
@@ -21,3 +36,4 @@ func is_pickuable_item(body: Node) -> bool:
 
 func is_interactable(body: Node) -> bool:
 	return body.is_in_group("interactable")
+	

@@ -3,15 +3,19 @@ extends Node2D
 var enemy_scene = preload("res://src/entities/slime/slime.tscn")
 var pickup_scene = preload("res://src/components/pickup/pickup.tscn")
 var inventory_view_scene = preload("res://src/components/inventory/inventory_view/inventory_view.tscn")
+var introduction_quest: Quest = preload("res://src/items/quests/introduction.tres")
 
+@onready var quest_dialog: QuestDialog = $UI/QuestDialog
 @onready var player_inventory_view: InventoryView = $UI/CenterContainer/HBoxContainer/VBoxContainer/PlayerInventoryView
 @onready var player_gear_view: GearView = $UI/CenterContainer/HBoxContainer/VBoxContainer/PlayerGearView
 @onready var player_inventories_view_wrapper =  $UI/CenterContainer/HBoxContainer/VBoxContainer
 @onready var world_drop_zone: WorldDropZone = $UI/WorldDropZone
 @onready var player: Player = $player
 @onready var enemy: Enemy = $slime
+@onready var big_slime: Enemy = $big_slime
 @onready var chests_wrapper: Node2D = $chests
 
+var quest_log := QuestLog.new()
 var not_player_inventory_view: InventoryView = null
 
 func _ready():
@@ -26,6 +30,13 @@ func _ready():
 	
 	create_borders()
 	spawn_enemies_in_zone()
+	
+	player.setup(quest_log)
+	enemy.setup(quest_log)
+	big_slime.setup(quest_log)
+	quest_dialog.setup(quest_log)
+	
+	quest_log.activate_quest(introduction_quest)
 	
 	world_drop_zone.setup(player)
 	player_inventory_view.setup(player.inventory.model)
@@ -46,10 +57,18 @@ func setup_chest_ui_listeners():
 		)
 		
 		
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("close_dialog"):
+		quest_dialog.close()
+	
 func _player_on_inventory_updated(state: IInventoryState, previous_state: IInventoryState):
+	_player_on_inventory_updated_quest_log(state, previous_state)
 	if state.is_opened or not not_player_inventory_view:
 		return
 	not_player_inventory_view.model.close()
+	
+func _player_on_inventory_updated_quest_log(state: IInventoryState, previous_state: IInventoryState) -> void:
+	quest_log.notify_inventory_updated(state.slots)
 	
 func _chest_on_inventory_updated(chest: Chest, state: IInventoryState):
 	chest_state_is_closed(state)
@@ -112,9 +131,10 @@ func spawn_enemies_in_zone():
 			spawn_enemy(Vector2(x, y))
 		
 func spawn_enemy(position: Vector2):
-	var enemy = enemy_scene.instantiate()
+	var enemy: Enemy = enemy_scene.instantiate()
 	enemy.position = position
 	add_child(enemy)
+	enemy.setup(quest_log)
 
 func _on_items_dropped(items: Array[DropItemResource]):
 	for drop_item in items:
