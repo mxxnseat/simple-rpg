@@ -13,13 +13,15 @@ func setup(e_model: EnemyModel, c_model: CombatModel) -> void:
 	combat_model = c_model
 
 func _physics_process(delta: float) -> void:
-	if combat_model.get_targets_number():
+	if combat_model.get_targets_number() and combat_model.can_attack():
 		model.attack()
 		
 	if model.state.current_state == EnemyState.STATES.ATTACKING:
 		handle_attack()
-	else:
+	elif model.state.target_player:
 		handle_movement()
+	else:
+		model.idle()
 
 func handle_movement():
 	model.move(body.global_position)

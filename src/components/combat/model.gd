@@ -1,8 +1,6 @@
 extends Node2D
 class_name CombatModel
 
-signal attack_sig()
-
 var state: CombatState
 var stats: Stats
 
@@ -47,6 +45,7 @@ func attack():
 		var damage = stats.get_stat("damage").get_value()
 		target.take_damage(damage)
 	state.set_is_attacking(false)
+	
 		
 func _on_attack_cooldown_timeout() -> void:
 	state.set_is_attack_cooldown(false)

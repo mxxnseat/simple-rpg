@@ -1,27 +1,25 @@
 extends Node2D
 class_name EnemyAnimationManager
 
+signal attack_finished
+
 var state: EnemyState
 @onready var animation_sprite = $AnimatedSprite2D
-var is_attacking = false
 
 func setup(e_state: EnemyState):
 	state = e_state
-	
+
 	state.state_changed.connect(_on_state_changed)
 	on_idle()
-	
-func is_not_attacking_with(condition: bool) -> bool:
-	return not is_attacking and condition
-	
+
 func _on_state_changed(action: EnemyState.STATES):
-	if action == EnemyState.STATES.ATTACKING:
-		is_attacking = true
-		on_attacking()
-	if is_not_attacking_with(action == EnemyState.STATES.IDLE):
-		on_idle()
-	elif is_not_attacking_with(action == EnemyState.STATES.MOVING):
-		on_moving()
+	match action:
+		EnemyState.STATES.ATTACKING:
+			on_attacking()
+		EnemyState.STATES.IDLE:
+			on_idle()
+		EnemyState.STATES.MOVING:
+			on_moving()
 		
 func flip_h()->void:
 	animation_sprite.flip_h = state.facing_direction.x < 0 \
@@ -58,4 +56,4 @@ func on_attacking():
 		animation_sprite.play("side_attack")
 	flip_h()
 	await animation_sprite.animation_finished
-	is_attacking = false
+	attack_finished.emit()

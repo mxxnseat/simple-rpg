@@ -7,6 +7,7 @@ var slot_size: int = 64
 var STATS_NAMES: Dictionary[String, String] = {
 	"MAX_HP": "max_hp",
 	"DAMAGE": "damage",
+	"DEFENCE": "defence",
 	"REGENERATION": "regeneration"
 }
 

@@ -8,12 +8,15 @@ func setup(e_state: EnemyState):
 	
 func is_dead() -> bool:
 	return state.current_state == state.STATES.DEAD
-	
+
+func is_attacking() -> bool:
+	return state.current_state == state.STATES.ATTACKING
+
 func stop() -> void:
 	state.velocity = Vector2.ZERO
 
 func idle():
-	if is_dead():
+	if is_dead() or is_attacking():
 		return
 	stop()
 	state.set_state(state.STATES.IDLE)
@@ -22,25 +25,32 @@ func chase(player: Player):
 	if is_dead():
 		return
 	state.set_player(player)
-	
+
 func release_chase():
 	if is_dead():
 		return
 	state.set_player(null)
+	if is_attacking():
+		return
 	stop()
 	state.set_state(state.STATES.IDLE)
-	
+
 func attack():
-	if is_dead():
+	if is_dead() or is_attacking():
 		return
 	state.set_state(state.STATES.ATTACKING)
+
+func finish_attack():
+	if not is_attacking():
+		return
+	state.set_state(state.STATES.IDLE)
 
 func die():
 	stop()
 	state.set_state(state.STATES.DEAD)
-	
+
 func move(current_position: Vector2):
-	if not state.target_player or is_dead():
+	if not state.target_player or is_dead() or is_attacking():
 		return
 	var direction = (state.target_player.global_position - current_position).normalized()
 	state.move(direction)

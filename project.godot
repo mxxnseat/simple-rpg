@@ -11,8 +11,12 @@ config_version=5
 [application]
 
 config/name="rpg-tutorial"
-run/main_scene="uid://vps80j7a5adm"
+run/main_scene="res://src/scenes/start_menu/start_menu.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
+
+[audio]
+
+buses/default_bus_layout="uid://cpgwpp3xfbjs1"
 
 [autoload]
 
@@ -64,3 +68,4 @@ close_dialog={
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+textures/vram_compression/import_etc2_astc=true

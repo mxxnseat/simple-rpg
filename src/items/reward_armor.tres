@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://bpqtoep15ww76"]
+
+[ext_resource type="Script" uid="uid://bgp7gcdkqgbxl" path="res://src/resources/item.gd" id="1_0wsfa"]
+[ext_resource type="Script" uid="uid://dbv8vw6sdt2ik" path="res://src/resources/equipment_data_modifier.gd" id="1_diue3"]
+[ext_resource type="Script" uid="uid://ocebgg8ptnho" path="res://src/resources/equipment_data.gd" id="2_bhlah"]
+[ext_resource type="Texture2D" uid="uid://bar4d3c0qdqho" path="res://art/items/rewarded_top_armor.png" id="3_7up48"]
+
+[sub_resource type="Resource" id="Resource_diue3"]
+script = ExtResource("1_diue3")
+stat = "defence"
+value = 600
+metadata/_custom_type_script = "uid://dbv8vw6sdt2ik"
+
+[sub_resource type="Resource" id="Resource_sa1kt"]
+script = ExtResource("2_bhlah")
+type = 1
+modifiers = Array[ExtResource("1_diue3")]([SubResource("Resource_diue3")])
+metadata/_custom_type_script = "uid://ocebgg8ptnho"
+
+[resource]
+script = ExtResource("1_0wsfa")
+id = 3
+name = "Reward armor"
+icon = ExtResource("3_7up48")
+max_stack = 1
+equipment_data = SubResource("Resource_sa1kt")
+metadata/_custom_type_script = "uid://bgp7gcdkqgbxl"

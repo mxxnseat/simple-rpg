@@ -46,7 +46,17 @@ func _ready():
 	player.inventory_updated.connect(_player_on_inventory_updated)
 	enemy.items_dropped.connect(_on_items_dropped)
 	player.items_dropped.connect(_on_items_dropped)
+	player.died.connect(_on_player_died)
+	
+	quest_log.quest_completed.connect(_on_quest_log_quest_completed)
 	setup_chest_ui_listeners()
+
+func _on_player_died() -> void:
+	get_tree().change_scene_to_file("res://src/scenes/death_screen/death_screen.tscn")
+
+func _on_quest_log_quest_completed(quest: QuestInstance):
+	for reward: QuestReward in quest.quest.rewards:
+		player.inventory.add_item(reward.item, reward.amount)
 
 func setup_chest_ui_listeners():
 	var chests = chests_wrapper.get_children() as Array[Chest]
@@ -59,6 +69,7 @@ func setup_chest_ui_listeners():
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("close_dialog"):
 		quest_dialog.close()
+		quest_log.notify_player_action_pressed(Global.PLAYER_ACTION_TYPES.CLOSE_DIALOG)
 	
 func _player_on_inventory_updated(state: IInventoryState, previous_state: IInventoryState):
 	_player_on_inventory_updated_quest_log(state, previous_state)

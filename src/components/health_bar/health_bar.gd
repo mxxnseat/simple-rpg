@@ -32,7 +32,13 @@ func _on_combat_state_state_changed(state: ICombatState, previous_state: ICombat
 
 # Public interface
 func take_damage(amount: int) -> void:
-	model.take_damage(amount)
+	var new_damage = max(
+		amount - stats.get_stat(
+			Global.STATS_NAMES["DEFENCE"]
+		).get_value(),
+		1.0
+	)
+	model.take_damage(new_damage)
 
 func _on_regeneration_timer_timeout() -> void:
 	model.regenerate(

@@ -27,6 +27,7 @@ texture = ExtResource("1_x2bgy")
 
 [node name="View" parent="." unique_id=1384078440 instance=ExtResource("2_sj6vf")]
 layout_mode = 1
+mouse_filter = 2
 
 [node name="Controller" type="Node2D" parent="." unique_id=128904964]
 script = ExtResource("2_bruad")

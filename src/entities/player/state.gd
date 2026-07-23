@@ -11,8 +11,10 @@ var speed: float = 100.0
 var velocity: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
-	set_state(STATES.IDLE)
+	state_changed.emit(current_state)
 
 func set_state(state: STATES) -> void:
+	if state == current_state:
+		return
 	current_state = state
 	state_changed.emit(current_state)

@@ -33,27 +33,24 @@ func setup(p_quest_log: QuestLog):
 	
 	gear.setup(stats, inventory)
 	health_bar.state_changed.connect(_on_health_bar_state_changed)
-	combat.model.attack_sig.connect(_on_combat_attack_sig)
+	anim_manager.attack_finished.connect(model.finish_attack)
 	fill_inventory()
 
 func _on_health_bar_state_changed(state: HealthBarState) -> void:
 	if state.is_dead:
 		_on_health_bar_died()
-		
+
 func _on_health_bar_died():
 	quest_log.notify_enemy_died(self)
 	model.die()
 	await anim_manager.on_death()
 	drop_items()
 	queue_free()
-	
+
 func take_damage(amount: int) -> void:
 	health_bar.take_damage(amount)
 	combat.took_damage()
 
-func _on_combat_attack_sig() -> void:
-	model.attack()
-	
 func drop_items() -> void:
 	items_dropped.emit(drop_item.drop(global_position))
 

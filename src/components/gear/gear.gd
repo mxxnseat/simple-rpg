@@ -7,17 +7,19 @@ var stats: Stats = null
 var parent_inventory: Inventory
 
 static var SLOT_POSITION_MAPPING = {
-	"weapon": 0
+	"weapon": 0,
+	"top_armor": 1
 }
 
 static var POSITION_SLOT_MAPPING = {
-	0: "weapon"
+	0: "weapon",
+	1: "top_armor"
 }
 
 func setup(p_stats: Stats, p_inventory: Inventory):
 	stats = p_stats
 	parent_inventory = p_inventory
-	inventory.setup(1)
+	inventory.setup(2)
 	
 	inventory.model.inventory_updated.connect(_on_inventory_updated)
 
@@ -33,11 +35,19 @@ func _on_inventory_updated(state: IInventoryState, previous_state: IInventorySta
 		
 	var inventory_slots = state.slots
 	var previous_inventory_slots = previous_state.slots
+	
 	var weapon_item = inventory.model.get_item_at_position_from_slots(SLOT_POSITION_MAPPING["weapon"], inventory_slots)
 	var previous_weapon_item = inventory.model.get_item_at_position_from_slots(SLOT_POSITION_MAPPING["weapon"], previous_inventory_slots)
 	
+	var top_armor_item = inventory.model.get_item_at_position_from_slots(SLOT_POSITION_MAPPING["top_armor"], inventory_slots)
+	var previous_top_armor_item = inventory.model.get_item_at_position_from_slots(SLOT_POSITION_MAPPING["top_armor"], previous_inventory_slots)
+	
 	_unequip_item_effects(previous_weapon_item)
 	_equip_item_effects(weapon_item)
+
+	_unequip_item_effects(previous_top_armor_item)
+	_equip_item_effects(top_armor_item)
+	
 	
 func equip_item_from(slot: String, slot_data: InventorySlotData, source: InventoryModel) -> void:
 	var position = get_position_by_slot(slot)

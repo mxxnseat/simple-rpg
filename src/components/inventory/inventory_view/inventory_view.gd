@@ -42,6 +42,7 @@ func _instantiate_slots() -> void:
 		slots.append(slot)
 		grid.add_child(slot)
 		slot.setup(model)
+		slot.dropped_data.connect(_drop_data)
 	
 func refresh(state: IInventoryState):
 	visible = state.is_opened

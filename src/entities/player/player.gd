@@ -3,12 +3,15 @@ class_name Player
 
 signal inventory_updated(state: IInventoryState, previous_state: IInventoryState)
 signal items_dropped(items: Array[DropItemResource])
+signal died
 
 @onready var sfx_player: AnimationPlayer = $sfx_player
 @onready var state: PlayerState = $State
 @onready var model: PlayerModel = $Model
 @onready var controller: PlayerController = $Controller
 @onready var anim_manager: PlayerAnimationManager = $AnimationManager
+@onready var sfx_manager: PlayerSfxManager = $SfxManager
+@onready var footsteps_player: AudioStreamPlayer = $SfxManager/FootStepsPlayer
 @onready var health_bar: HealthBar = $health_bar
 @onready var combat: Combat = $combat
 @onready var inventory: Inventory = $Inventory
@@ -32,7 +35,9 @@ func setup(quest_log: QuestLog):
 		interactable.model,
 		quest_log
 	)
-	anim_manager.setup(state, sfx_player)
+	anim_manager.setup(state)
+	anim_manager.attack_finished.connect(model.finish_attack)
+	sfx_manager.setup(state, sfx_player, footsteps_player)
 	gear.setup(stats, inventory)
 	
 	inventory.setup(10)
@@ -53,10 +58,13 @@ func _on_health_bar_state_changed(state: HealthBarState):
 		_on_health_bar_died()
 
 func _on_health_bar_died():
+	if model.is_dead():
+		return
 	model.die()
 	await anim_manager.on_death()
+	died.emit()
 	queue_free()
-	
+
 func take_damage(amount: int):
 	health_bar.take_damage(amount)
 	combat.took_damage()

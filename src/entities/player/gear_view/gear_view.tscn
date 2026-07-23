@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://k548m77ympaf" path="res://src/entities/player/gear_view/stat/stat.tscn" id="4_4gagw"]
 [ext_resource type="Texture2D" uid="uid://betlbqkmf4lxo" path="res://art/sprites/characters/player.png" id="5_dtkbi"]
 [ext_resource type="Texture2D" uid="uid://05xlqnph4qta" path="res://art/inventory/weapon_slot.png" id="7_r3bfw"]
+[ext_resource type="Texture2D" uid="uid://b2pd5tct6xqi5" path="res://art/inventory/top_armor_slot.png" id="8_2pclc"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_iqluv"]
 texture = ExtResource("1_7noab")
@@ -83,6 +84,14 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_iqluv")
 script = ExtResource("3_4gagw")
 
+[node name="DefenceStat" parent="HBoxContainer/StatsTextWrapper" unique_id=903863097 instance=ExtResource("4_4gagw")]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 202.0
+offset_right = 128.0
+offset_bottom = 230.0
+stat_label_text = "Defence:"
+
 [node name="AttackStat" parent="HBoxContainer/StatsTextWrapper" unique_id=652665502 instance=ExtResource("4_4gagw")]
 layout_mode = 0
 offset_left = 18.0
@@ -120,3 +129,11 @@ offset_top = 103.0
 offset_right = -13.5
 offset_bottom = -112.0
 empty_slot_override = ExtResource("7_r3bfw")
+
+[node name="TopArmorSlot" parent="HBoxContainer/SlotsWrapper" unique_id=2117347921 instance=ExtResource("2_gda3f")]
+layout_mode = 1
+offset_left = 115.0
+offset_top = 20.0
+offset_right = -90.5
+offset_bottom = -195.0
+empty_slot_override = ExtResource("8_2pclc")

@@ -106,3 +106,4 @@ metadata/_edit_use_anchors_ = true
 libraries/ = SubResource("AnimationLibrary_yfxpg")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2076383]
+bus = &"Game"

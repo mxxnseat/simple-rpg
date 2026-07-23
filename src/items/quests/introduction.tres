@@ -7,6 +7,8 @@
 [ext_resource type="Resource" uid="uid://cu8vdmryigw6f" path="res://src/items/key.tres" id="4_7v35r"]
 [ext_resource type="Script" uid="uid://cfd1it4yrvtbi" path="res://src/resources/quest/inventory_item_existence.gd" id="5_1sur0"]
 [ext_resource type="Resource" uid="uid://cn4q1f6i0r21i" path="res://src/items/beginner_sword.tres" id="6_irser"]
+[ext_resource type="Script" uid="uid://b4cxat3tj8mqh" path="res://src/resources/quest_reward.gd" id="7_irser"]
+[ext_resource type="Resource" uid="uid://bpqtoep15ww76" path="res://src/items/reward_armor.tres" id="8_d2p13"]
 
 [sub_resource type="Resource" id="Resource_dapoc"]
 script = ExtResource("2_617xu")
@@ -61,7 +63,13 @@ action = 5
 description = "Press ESC to close any dialog"
 metadata/_custom_type_script = "uid://inf1dhuqmqrw"
 
+[sub_resource type="Resource" id="Resource_rean1"]
+script = ExtResource("7_irser")
+item = ExtResource("8_d2p13")
+metadata/_custom_type_script = "uid://b4cxat3tj8mqh"
+
 [resource]
 script = ExtResource("2_vgirv")
 conditions = Array[ExtResource("1_vdccd")]([SubResource("Resource_dapoc"), SubResource("Resource_6ddu8"), SubResource("Resource_7v35r"), SubResource("Resource_lknfi"), SubResource("Resource_irser"), SubResource("Resource_d2p13"), SubResource("Resource_q0bwe"), SubResource("Resource_1sur0")])
+rewards = Array[ExtResource("7_irser")]([SubResource("Resource_rean1")])
 metadata/_custom_type_script = "uid://bpjxqyrlmmcqx"

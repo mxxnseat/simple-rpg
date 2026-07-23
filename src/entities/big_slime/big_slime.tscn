@@ -449,7 +449,7 @@ radius = 12.0
 script = ExtResource("2_f068r")
 
 [node name="Stats" parent="." index="7" unique_id=434526498]
-default_damage = 500.0
+default_damage = 800.0
 
 [node name="AnimationManager" type="Node2D" parent="." index="9" unique_id=1070921139]
 script = ExtResource("2_2eovj")

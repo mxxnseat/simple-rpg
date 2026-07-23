@@ -1,6 +1,8 @@
 extends Panel
 class_name SlotItem
 
+signal dropped_data(at_position: Vector2, data: Variant)
+
 var slot_background = preload("res://art/inventory/inventiory_slot.png")
 
 @onready var controller: SlotItemController = $Controller
@@ -20,6 +22,12 @@ func create_preview() -> TextureRect:
 	preview.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	preview.modulate.a = 1.0
 	return preview
+
+func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+	return true
+	
+func _drop_data(at_position: Vector2, data: Variant) -> void:
+	dropped_data.emit(at_position, data)
 
 func _get_drag_data(at_position: Vector2) -> Variant:
 	if slot_data == null:

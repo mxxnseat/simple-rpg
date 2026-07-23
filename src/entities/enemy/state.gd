@@ -24,5 +24,7 @@ func move(direction: Vector2) -> void:
 	set_state(STATES.MOVING)
 	
 func set_state(state: STATES) -> void:
+	if state == current_state:
+		return
 	current_state = state
 	state_changed.emit(current_state)
